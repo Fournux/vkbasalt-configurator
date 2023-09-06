@@ -1,0 +1,59 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ExpanderRow fxaa_settings {
+  title: "Enable FXAA (Fast Approximate Anti-Aliasing)";
+
+  [action]
+  Switch gtk_switch {
+    valign: center;
+  }
+
+  Adw.ActionRow {
+    title: "Subpixel Quality";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spin_subpixel {
+      valign: center;
+      digits: 2;
+      adjustment: Adjustment {
+          lower: 0.0;
+          upper: 1.0;
+          step-increment: 0.05;
+        };
+    }
+  }
+
+  Adw.ActionRow {
+    title: "Edge Threshold";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spin_edge {
+      valign: center;
+      digits: 3;
+      adjustment: Adjustment {
+          lower: 0.063;
+          upper: 0.333;
+          step-increment: 0.001;
+        };
+    }
+  }
+
+  Adw.ActionRow {
+    title: "Edge Threshold Min";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spin_edge_min {
+      valign: center;
+      digits: 4;
+      adjustment: Adjustment {
+          lower: 0.0312;
+          upper: 0.0833;
+          step-increment: 0.0010;
+        };
+    }
+  }
+}
