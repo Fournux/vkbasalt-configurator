@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+# TODO Replace with a more user friendly name
+Name=vkbasalt-configurator
+Exec=vkbasalt_configurator
+# TODO: add icon

@@ -1,0 +1,32 @@
+using Gtk 4.0;
+using Adw 1;
+
+Gtk.ApplicationWindow main_window {
+  default-width: 600;
+  default-height: 300;
+  title: "vkbasalt-configurator";
+  styles ["devel"]
+
+  [titlebar]
+  HeaderBar {
+    styles ["flat"]
+
+    [start]
+    Button btn_open {
+      label: "Open";
+    }
+  }
+
+  ScrolledWindow {
+    Box {
+      halign: center;
+      Box main_box {
+        width-request: 500;
+        orientation: vertical;
+        margin-top: 10;
+        spacing: 10;
+
+      }
+    }
+  }
+}
