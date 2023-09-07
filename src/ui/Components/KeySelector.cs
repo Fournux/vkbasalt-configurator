@@ -2,14 +2,12 @@ namespace ui;
 
 public class KeySelector : Gtk.Button
 {
-    private readonly Gtk.EventControllerKey _keyController;
-    private string _key = string.Empty;
+    private readonly Gtk.EventControllerKey keyController;
     public string Key
     {
-        get { return _key; }
+        get { return this.GetLabel()!; }
         set
         {
-            _key = value;
             this.SetLabel(value);
         }
     }
@@ -19,12 +17,13 @@ public class KeySelector : Gtk.Button
     {
         this.SetValign(Gtk.Align.Center);
 
-        _keyController = Gtk.EventControllerKey.New();
-        _keyController.OnKeyPressed += (_, args) =>
+        keyController = Gtk.EventControllerKey.New();
+        keyController.OnKeyPressed += (_, args) =>
         {
             if (this.Listening)
             {
-                this.Key = args.Keycode.ToString();
+                this.Key = Gdk.Functions.KeyvalName(args.Keyval)!;
+
                 this.Listening = false;
                 return false;
             }
@@ -35,7 +34,7 @@ public class KeySelector : Gtk.Button
 
         };
 
-        this.AddController(_keyController);
+        this.AddController(keyController);
 
 
         this.OnClicked += (_, args) =>
@@ -44,19 +43,16 @@ public class KeySelector : Gtk.Button
             this.Listening = true;
         };
 
-        this.OnNotify += (_self, args) =>
+        this.OnNotify += (_, args) =>
         {
             if (args.Pspec.GetName() == "has_focus")
             {
-                var self = (KeySelector)_self;
-                if (!self.HasFocus)
+                if (!this.HasFocus)
                 {
                     this.SetLabel(this.Key);
                 }
             }
         };
-
-        this.SetLabel("coucou");
     }
 
 }

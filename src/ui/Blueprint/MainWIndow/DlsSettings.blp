@@ -1,11 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-Adw.ExpanderRow dls_settings {
-  title: "Enable DLS (Denoised Luma Sharpening)";
+Adw.ExpanderRow dlsSettings {
+  title: "DLS (Denoised Luma Sharpening)";
 
   [action]
-  Switch gtk_switch {
+  Switch gtkSwitch {
     valign: center;
   }
 
@@ -14,7 +14,7 @@ Adw.ExpanderRow dls_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton spin_sharpening {
+    SpinButton spinSharpening {
       valign: center;
       digits: 2;
       adjustment: Adjustment {
@@ -29,7 +29,7 @@ Adw.ExpanderRow dls_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton spin_denoise {
+    SpinButton spinDenoise {
       valign: center;
       digits: 2;
       adjustment: Adjustment {

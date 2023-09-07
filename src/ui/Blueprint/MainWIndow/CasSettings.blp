@@ -1,11 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-Adw.ExpanderRow cas_settings {
-  title: "Enable CAS (Contrast Adaptive Sharpening)";
+Adw.ExpanderRow casSettings {
+  title: "CAS (Contrast Adaptive Sharpening)";
 
   [action]
-  Switch gtk_switch {
+  Switch gtkSwitch {
     valign: center;
   }
 
@@ -14,7 +14,7 @@ Adw.ExpanderRow cas_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton gtk_spin_button {
+    SpinButton gtkSpinButton {
       valign: center;
       digits: 2;
       adjustment: Adjustment {

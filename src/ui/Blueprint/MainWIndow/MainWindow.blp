@@ -12,8 +12,16 @@ Gtk.ApplicationWindow main_window {
     styles ["flat"]
 
     [start]
-    Button btn_open {
-      label: "Open";
+    Box {
+      styles ["linked"]
+      Button btn_open {
+        label: "Open";
+      }
+      Button {
+        Adw.ButtonContent {
+          icon-name:"save";
+        }
+      }
     }
   }
 
@@ -25,7 +33,6 @@ Gtk.ApplicationWindow main_window {
         orientation: vertical;
         margin-top: 10;
         spacing: 10;
-
       }
     }
   }

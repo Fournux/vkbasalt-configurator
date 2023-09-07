@@ -1,0 +1,91 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ExpanderRow smaaSettings {
+  title: "SMAA (Enhanced Subpixel Morphological Antialiasing)";
+
+  [action]
+  Switch gtkSwitch {
+    valign: center;
+  }
+
+  Adw.ActionRow {
+    title: "Edge detection shader";
+    hexpand: true;
+
+    [suffix]
+    Box {
+      styles ["linked"]
+      ToggleButton toggleLuma {
+        valign: center;
+        label: "Luma";
+        group: toggleColor;
+      }
+      ToggleButton toggleColor {
+        valign: center;
+        label: "Color";
+      }
+    }
+  }
+  
+  Adw.ActionRow {
+    title: "Edge threshold";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spinEdge {
+      valign: center;
+      digits: 2;
+      adjustment: Adjustment {
+          lower: 0.00;
+          upper: 0.50;
+          step-increment: 0.01;
+        };
+    }
+  }
+
+  Adw.ActionRow {
+    title: "Maximum search steps";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spinSteps {
+      valign: center;
+      adjustment: Adjustment {
+          lower: 0;
+          upper: 112;
+          step-increment: 1;
+        };
+    }
+  }
+  
+    Adw.ActionRow {
+    title: "Maximum search diagonal steps";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spinDiagSteps {
+      valign: center;
+      adjustment: Adjustment {
+          lower: 0;
+          upper: 20;
+          step-increment: 1;
+        };
+    }
+  }
+  
+  Adw.ActionRow {
+    title: "Corner rounding";
+    hexpand: true;
+
+    [suffix]
+    SpinButton spinCorner {
+      valign: center;
+      adjustment: Adjustment {
+          lower: 0;
+          upper: 100;
+          step-increment: 1;
+        };
+    }
+  }
+}

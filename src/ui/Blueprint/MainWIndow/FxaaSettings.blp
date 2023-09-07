@@ -1,11 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-Adw.ExpanderRow fxaa_settings {
-  title: "Enable FXAA (Fast Approximate Anti-Aliasing)";
+Adw.ExpanderRow fxaaSettings {
+  title: "FXAA (Fast Approximate Anti-Aliasing)";
 
   [action]
-  Switch gtk_switch {
+  Switch gtkSwitch {
     valign: center;
   }
 
@@ -14,7 +14,7 @@ Adw.ExpanderRow fxaa_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton spin_subpixel {
+    SpinButton spinSubpixel {
       valign: center;
       digits: 2;
       adjustment: Adjustment {
@@ -30,7 +30,7 @@ Adw.ExpanderRow fxaa_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton spin_edge {
+    SpinButton spinEdge {
       valign: center;
       digits: 3;
       adjustment: Adjustment {
@@ -46,7 +46,7 @@ Adw.ExpanderRow fxaa_settings {
     hexpand: true;
 
     [suffix]
-    SpinButton spin_edge_min {
+    SpinButton spinEdgeMin {
       valign: center;
       digits: 4;
       adjustment: Adjustment {

@@ -4,24 +4,24 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="GirCore.Adw-1" Version="0.5.0-preview.1" />
+    <PackageReference Include="GirCore.Gdk-4.0" Version="0.5.0-preview.1" />
   </ItemGroup>
 
   <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
     <!-- Build Blueprints -->
-    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/blueprints $(MSBuildProjectDirectory)/blueprints/**/*.blp" />
+    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/src/ui/Blueprint $(MSBuildProjectDirectory)/src/ui/Blueprint/**/*.blp" />
   </Target>
-
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">
     <!-- Remove obj folder -->
     <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
     <!-- Remove bin folder -->
     <RemoveDir Directories="$(BaseOutputPath)" />
-
     <!-- Remove compiled blueprints -->
     <RemoveDir Directories="$(MSBuildProjectDirectory)/build" />
   </Target>
