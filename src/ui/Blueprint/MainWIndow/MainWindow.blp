@@ -15,21 +15,25 @@ Gtk.ApplicationWindow main_window {
     Box {
       styles ["linked"]
       Button btn_open {
-        label: "Open";
+        Adw.ButtonContent {
+          icon-name:"document-open-symbolic";
+          label: "Open";
+        }
       }
       Button {
         Adw.ButtonContent {
-          icon-name:"save";
+          icon-name:"document-save-symbolic";
+          label: "Save";
+
         }
       }
     }
   }
 
   ScrolledWindow {
-    Box {
-      halign: center;
+    Adw.Clamp {
+      maximum-size: 600;
       Box main_box {
-        width-request: 600;
         orientation: vertical;
         margin-top: 10;
         spacing: 10;

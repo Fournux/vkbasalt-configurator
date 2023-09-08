@@ -38,7 +38,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
         btn_open!.OnClicked += async (sender, args) =>
         {
-            Gio.File? file = await FileHelper.Select(this, "Select a file", "Accept");
+            Gio.File? file = await FileHelper.Select(this, "Select a file", "Open");
 
             if (file != null)
             {
