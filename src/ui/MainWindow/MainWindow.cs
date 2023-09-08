@@ -1,10 +1,12 @@
+using GLib;
+
 namespace ui;
 
 public class MainWindow : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Gtk.Box main_box;
-
+    [Gtk.Connect] private readonly Gtk.Button btn_open;
 #pragma warning restore 0649
 
     private readonly KeySelectorRow keySelectorRow;
@@ -33,6 +35,16 @@ public class MainWindow : Gtk.ApplicationWindow
         main_box!.Append(dlsSettings);
         main_box!.Append(fxaaSettings);
         main_box!.Append(smaaSettings);
+
+        btn_open!.OnClicked += async (sender, args) =>
+        {
+            Gio.File? file = await FileHelper.Select(this, "Select a file", "Accept");
+
+            if (file != null)
+            {
+                Console.WriteLine(file.GetPath());
+            }
+        };
     }
 
     public MainWindow(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "main_window")
