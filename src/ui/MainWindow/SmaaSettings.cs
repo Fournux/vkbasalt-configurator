@@ -15,7 +15,7 @@ public class SmaaSettings : Adw.ExpanderRow
 
 #pragma warning restore 0649
 
-    public bool Active
+    public bool Enabled
     {
         get { return this.gtkSwitch!.GetActive(); }
         set { this.gtkSwitch!.SetActive(value); }

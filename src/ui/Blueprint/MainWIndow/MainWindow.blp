@@ -1,43 +1,41 @@
 using Gtk 4.0;
 using Adw 1;
 
-Gtk.ApplicationWindow main_window {
+Gtk.ApplicationWindow mainWindow {
   default-width: 700;
   default-height: 800;
-  title: "vkbasalt-configurator";
   styles ["devel"]
 
   [titlebar]
-  HeaderBar {
-    styles ["flat"]
+  Adw.HeaderBar {
+    styles ["toolbar", "flat"]
 
     [start]
     Box {
-      styles ["linked"]
-      Button btn_open {
-        Adw.ButtonContent {
-          icon-name:"document-open-symbolic";
-          label: "Open";
-        }
-      }
-      Button {
+      Button saveButton {
+        visible: false;
         Adw.ButtonContent {
           icon-name:"document-save-symbolic";
           label: "Save";
+        }
+      }
+    }
 
+    [end]
+    Box {
+      Button closeButton {
+        visible: false;
+        Adw.ButtonContent {
+          icon-name:"close-symbolic";
+          label: "Close";
         }
       }
     }
   }
-
   ScrolledWindow {
-    Adw.Clamp {
+    Adw.Clamp clamp {
       maximum-size: 600;
-      Box main_box {
-        orientation: vertical;
-        margin-top: 10;
-        spacing: 10;
-      }
+
     }
   }
 }

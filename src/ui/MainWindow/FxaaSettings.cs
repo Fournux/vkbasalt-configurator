@@ -11,7 +11,7 @@ public class FxaaSettings : Adw.ExpanderRow
     [Gtk.Connect] private readonly Gtk.SpinButton? spinEdgeMin;
 #pragma warning restore 0649
 
-    public bool Active
+    public bool Enabled
     {
         get { return this.gtkSwitch!.GetActive(); }
         set { this.gtkSwitch!.SetActive(value); }

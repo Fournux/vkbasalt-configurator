@@ -6,20 +6,20 @@ public class DlsSettings : Adw.ExpanderRow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Gtk.Switch? gtkSwitch;
-    [Gtk.Connect] private readonly Gtk.SpinButton? spinSharpening;
+    [Gtk.Connect] private readonly Gtk.SpinButton? spinSharpness;
     [Gtk.Connect] private readonly Gtk.SpinButton? spinDenoise;
 #pragma warning restore 0649
 
-    public bool Active
+    public bool Enabled
     {
         get { return this.gtkSwitch!.GetActive(); }
         set { this.gtkSwitch!.SetActive(value); }
     }
 
-    public double Sharpening
+    public double Sharpness
     {
-        get { return this.spinSharpening!.GetValue(); }
-        set { this.spinSharpening!.SetValue(value); }
+        get { return this.spinSharpness!.GetValue(); }
+        set { this.spinSharpness!.SetValue(value); }
     }
 
     public double Denoise

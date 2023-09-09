@@ -1,0 +1,28 @@
+using Gtk 4.0;
+using Adw 1;
+
+Box homeView {
+  orientation: vertical;
+  margin-top: 10;
+  spacing: 10;
+
+  Adw.StatusPage {
+    title: "vkBasalt Configurator";
+    description: "Please select a config file in your system or create a new one.";
+    icon-name: "system-run-symbolic";
+  }
+
+  Box {
+  halign: center;
+  spacing: 30;
+    Button buttonExisting {
+      styles ["suggested-action", "pill"]
+      label: "Open an existing config file";
+    }
+    Button buttonNew {
+      styles ["accent", "pill"]
+      label: "Create a new config file";
+      sensitive: false;
+    }
+  }
+}

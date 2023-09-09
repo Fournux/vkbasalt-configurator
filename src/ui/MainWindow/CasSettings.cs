@@ -9,13 +9,13 @@ public class CasSettings : Adw.ExpanderRow
     [Gtk.Connect] private readonly Gtk.SpinButton? gtkSpinButton;
 #pragma warning restore 0649
 
-    public bool Active
+    public bool Enabled
     {
         get { return this.gtkSwitch!.GetActive(); }
         set { this.gtkSwitch!.SetActive(value); }
     }
 
-    public double Sharpening
+    public double Sharpness
     {
         get { return this.gtkSpinButton!.GetValue(); }
         set { this.gtkSpinButton!.SetValue(value); }
