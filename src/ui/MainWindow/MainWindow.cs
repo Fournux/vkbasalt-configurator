@@ -1,4 +1,6 @@
+using core.ApplicationSettings;
 using GLib;
+using core;
 
 namespace ui;
 
@@ -8,6 +10,8 @@ public class MainWindow : Gtk.ApplicationWindow
     [Gtk.Connect] private readonly Adw.Clamp? clamp;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
     [Gtk.Connect] private readonly Gtk.Button? closeButton;
+    [Gtk.Connect] private readonly Gtk.Label? subtitle;
+
 
 #pragma warning restore 0649
 
@@ -20,34 +24,45 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         builder.Connect(this);
 
-        configView = new ConfigView();
+        this.configView = new ConfigView();
 
-        homeView = new HomeView(this);
-        homeView.OnFileSelected += this.OpenConfigFile;
-        clamp!.SetChild(homeView);
+        this.homeView = new HomeView(this);
+        this.homeView.OnFileSelected += this.OpenConfigFile;
+        this.clamp!.SetChild(homeView);
 
-        closeButton!.OnClicked += (sender, args) =>
+        this.closeButton!.OnClicked += (_, _) => this.CloseConfigFile();
+        this.saveButton!.OnClicked += (_, _) => this.SaveConfigFile();
+        this.OnCloseRequest += (_, _) =>
         {
-            CloseConfigFile();
+            ApplicationSettingsManager.Persist();
+            return false;
         };
-
     }
 
-    private void OpenConfigFile(Gio.File file)
+    private void OpenConfigFile(string file)
     {
-        clamp!.SetChild(configView);
-        configFile = new ConfigFile(file.GetPath()!);
+        configFile = new ConfigFile(file);
         configView!.LoadConfigFile(configFile);
+        ApplicationSettingsManager.Settings.RecentFiles.Add(file);
+
+
+        clamp!.SetChild(configView);
         closeButton!.SetVisible(true);
         saveButton!.SetVisible(true);
     }
 
     private void CloseConfigFile()
     {
-
+        this.SaveConfigFile();
         clamp!.SetChild(homeView);
         closeButton!.SetVisible(false);
         saveButton!.SetVisible(false);
+    }
+
+    private void SaveConfigFile()
+    {
+        configView!.UpdateConfigFile(configFile!);
+        configFile!.Save();
     }
 
     public MainWindow(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")

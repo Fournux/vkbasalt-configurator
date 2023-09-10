@@ -1,3 +1,4 @@
+using core;
 using GLib;
 
 namespace ui;
@@ -20,14 +21,12 @@ public class ConfigView : Gtk.Box
         this.SetMarginTop(10);
         this.SetSpacing(10);
 
-        this.keySelectorRow = new KeySelectorRow() { };
-        this.keySelectorRow.SetTitle("Toggle key");
-        this.switchRow = new SwitchRow() { };
-        this.switchRow.SetTitle("Enable on start");
-        this.casSettings = new CasSettings { };
-        this.dlsSettings = new DlsSettings { };
-        this.fxaaSettings = new FxaaSettings { };
-        this.smaaSettings = new SmaaSettings { };
+        this.keySelectorRow = new KeySelectorRow("Toggle key");
+        this.switchRow = new SwitchRow("Enable on start");
+        this.casSettings = new CasSettings();
+        this.dlsSettings = new DlsSettings();
+        this.fxaaSettings = new FxaaSettings();
+        this.smaaSettings = new SmaaSettings();
 
         this.Append(switchRow);
         this.Append(keySelectorRow);
@@ -108,6 +107,6 @@ public class ConfigView : Gtk.Box
         if (fxaaSettings.Enabled) effects.Add("fxaa");
         if (smaaSettings.Enabled) effects.Add("smaa");
 
-        configFile.Set(ConfigKey.Effects, string.Join(';', effects));
+        configFile.Set(ConfigKey.Effects, string.Join(':', effects));
     }
 }

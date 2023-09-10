@@ -4,19 +4,20 @@ public class KeySelectorRow : Adw.ActionRow
 {
     public string Key
     {
-        get { return this._keySelector.Key; }
+        get { return this.keySelector.Key; }
         set
         {
-            this._keySelector.Key = value;
+            this.keySelector.Key = value;
         }
     }
 
-    private readonly KeySelector _keySelector;
+    private readonly KeySelector keySelector;
 
-    public KeySelectorRow()
+    public KeySelectorRow(string title)
     {
         this.SetHexpand(true);
-        this._keySelector = new KeySelector();
-        this.AddSuffix(this._keySelector);
+        this.keySelector = new KeySelector();
+        this.AddSuffix(this.keySelector);
+        this.SetTitle(title);
     }
 }

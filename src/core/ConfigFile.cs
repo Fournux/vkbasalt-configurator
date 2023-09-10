@@ -1,17 +1,17 @@
-using System;
 using System.Globalization;
-using GObject.Internal;
+
+namespace core;
 
 public class ConfigFile
 {
-    private string path;
+    public string Path { get; set; }
     private IDictionary<ConfigKey, string> raw;
 
     public ConfigFile(string path)
     {
-        this.path = path;
-        this.raw = new Dictionary<ConfigKey, string>();
-        foreach (var line in File.ReadLines(path))
+        Path = path;
+        raw = new Dictionary<ConfigKey, string>();
+        foreach (var line in File.ReadLines(Path))
         {
             if (!line.StartsWith('#') && line.Contains('='))
             {
@@ -27,14 +27,18 @@ public class ConfigFile
         return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
     }
 
-    public void Set<T>(ConfigKey key, T value)
+    public void Set<T>(ConfigKey key, T _value)
     {
-        raw[key] = value!.ToString()!;
+        string str;
+        if (_value is double value) str = value.ToString("0.#####", CultureInfo.InvariantCulture)!;
+        else str = _value!.ToString()!;
+
+        raw[key] = str;
     }
 
     public void Save()
     {
-        using StreamWriter writer = new(this.path);
+        using StreamWriter writer = new(Path);
         foreach (KeyValuePair<ConfigKey, string> entry in raw)
         {
             var key = entry.Key.ToString();

@@ -13,16 +13,22 @@ Box homeView {
   }
 
   Box {
-  halign: center;
-  spacing: 30;
-    Button buttonExisting {
-      styles ["suggested-action", "pill"]
-      label: "Open an existing config file";
+    halign: center;
+    spacing: 30;
+      Button buttonExisting {
+        styles ["suggested-action", "pill"]
+        label: "Open an existing config file";
+      }
+      Button buttonNew {
+        styles ["accent", "pill"]
+        label: "Create a new config file";
+        sensitive: false;
+      }
     }
-    Button buttonNew {
-      styles ["accent", "pill"]
-      label: "Create a new config file";
-      sensitive: false;
-    }
+
+  ListBox recentFilesContainer {
+    margin-top:40;
+    activate-on-single-click: false;
+    styles ["boxed-list"]
   }
 }

@@ -4,20 +4,21 @@ public class SwitchRow : Adw.ActionRow
 {
     public bool Active
     {
-        get { return this._switch.GetActive(); }
+        get { return this.gtkSwitch.GetActive(); }
         set
         {
-            this._switch.SetActive(value);
+            this.gtkSwitch.SetActive(value);
         }
     }
 
-    private readonly Gtk.Switch _switch;
+    private readonly Gtk.Switch gtkSwitch;
 
-    public SwitchRow()
+    public SwitchRow(string title)
     {
         this.SetHexpand(true);
-        this._switch = new Gtk.Switch();
-        this._switch.SetValign(Gtk.Align.Center);
-        this.AddSuffix(this._switch);
+        this.gtkSwitch = new Gtk.Switch();
+        this.gtkSwitch.SetValign(Gtk.Align.Center);
+        this.AddSuffix(this.gtkSwitch);
+        this.SetTitle(title);
     }
 }
