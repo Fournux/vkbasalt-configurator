@@ -1,4 +1,4 @@
-using core.ApplicationSettings;
+using core.ApplicationState;
 using GLib;
 using core;
 
@@ -34,7 +34,7 @@ public class MainWindow : Gtk.ApplicationWindow
         this.saveButton!.OnClicked += (_, _) => this.SaveConfigFile();
         this.OnCloseRequest += (_, _) =>
         {
-            ApplicationSettingsManager.Persist();
+            StateManager.Persist();
             return false;
         };
     }
@@ -43,7 +43,7 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         configFile = new ConfigFile(file);
         configView!.LoadConfigFile(configFile);
-        ApplicationSettingsManager.Settings.RecentFiles.Add(file);
+        StateManager.State.RecentFiles.Add(file);
 
 
         clamp!.SetChild(configView);

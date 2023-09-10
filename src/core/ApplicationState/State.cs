@@ -1,10 +1,10 @@
 using core.Collections;
 using MessagePack;
 
-namespace core.ApplicationSettings;
+namespace core.ApplicationState;
 
 [MessagePackObject]
-public class ApplicationSettings
+public class State
 {
     [Key(0)]
     public ObservableHashSet<string> RecentFiles { get; set; } = new();

@@ -1,4 +1,4 @@
-using core.ApplicationSettings;
+using core.ApplicationState;
 using GLib;
 using ui.Helper;
 
@@ -6,16 +6,13 @@ namespace ui;
 
 public class HomeView : Gtk.Box
 {
-    private readonly Gtk.Window? window;
-
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Gtk.Button? buttonExisting;
     [Gtk.Connect] private readonly Gtk.Button? buttonNew;
     [Gtk.Connect] private readonly Gtk.ListBox? recentFilesContainer;
 #pragma warning restore 0649
-
+    private readonly Gtk.Window? window;
     private ICollection<DeleteRow> recentFileRows = new List<DeleteRow>();
-
     public delegate void FileSelectedCallback(string file);
     public event FileSelectedCallback? OnFileSelected;
 
@@ -31,7 +28,7 @@ public class HomeView : Gtk.Box
             }
         };
 
-        var files = ApplicationSettingsManager.Settings.RecentFiles;
+        var files = StateManager.State.RecentFiles;
 
         files.CollectionChanged += (_, _) =>
         {
