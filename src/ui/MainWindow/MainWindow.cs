@@ -1,5 +1,4 @@
 using core.ApplicationState;
-using GLib;
 using core;
 
 namespace ui;
@@ -10,9 +9,6 @@ public class MainWindow : Gtk.ApplicationWindow
     [Gtk.Connect] private readonly Adw.Clamp? clamp;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
     [Gtk.Connect] private readonly Gtk.Button? closeButton;
-    [Gtk.Connect] private readonly Gtk.Label? subtitle;
-
-
 #pragma warning restore 0649
 
     private readonly HomeView? homeView;

@@ -9,28 +9,7 @@ Gtk.ApplicationWindow mainWindow {
   [titlebar]
   Adw.HeaderBar {
     styles ["toolbar", "flat"]
-    title-widget: Box {
-      orientation: vertical;
-      margin-top: 5;
-      Label {
-        styles ["title"]
-        label: "vkBasalt Configurator";
-        single-line-mode: true;
-        ellipsize: end;
-        width-chars: 5;
-      }
-      Label subtitle {
-        styles ["subtitle"]
-        label: "toio";
-        single-line-mode: true;
-        ellipsize: end;
-        width-chars: 5;
-        visible: false;
-      }
-    };
-
-
-
+    
     [start]
     Box {
       Button saveButton {

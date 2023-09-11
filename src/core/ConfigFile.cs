@@ -27,7 +27,7 @@ public class ConfigFile
 
     public T Get<T>(ConfigKey key)
     {
-        string value = raw.ContainsKey(key) ? raw[key] : DefaultValue(key);
+        string value = raw.TryGetValue(key, out var _value) ? _value : DefaultValue(key);
         return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
     }
 

@@ -5,26 +5,26 @@ public class KeySelector : Gtk.Button
     private readonly Gtk.EventControllerKey keyController;
     public string Key
     {
-        get { return this.GetLabel()!; }
+        get { return GetLabel()!; }
         set
         {
-            this.SetLabel(value);
+            SetLabel(value);
         }
     }
     private bool Listening { get; set; } = false;
 
     public KeySelector() : base()
     {
-        this.SetValign(Gtk.Align.Center);
+        SetValign(Gtk.Align.Center);
 
         keyController = Gtk.EventControllerKey.New();
         keyController.OnKeyPressed += (_, args) =>
         {
-            if (this.Listening)
+            if (Listening)
             {
-                this.Key = Gdk.Functions.KeyvalName(args.Keyval)!;
+                Key = Gdk.Functions.KeyvalName(args.Keyval)!;
 
-                this.Listening = false;
+                Listening = false;
                 return false;
             }
             else
@@ -34,22 +34,22 @@ public class KeySelector : Gtk.Button
 
         };
 
-        this.AddController(keyController);
+        AddController(keyController);
 
 
-        this.OnClicked += (_, args) =>
+        OnClicked += (_, args) =>
         {
-            this.SetLabel("Press any key");
-            this.Listening = true;
+            SetLabel("Press any key");
+            Listening = true;
         };
 
-        this.OnNotify += (_, args) =>
+        OnNotify += (_, args) =>
         {
             if (args.Pspec.GetName() == "has_focus")
             {
-                if (!this.HasFocus)
+                if (!HasFocus)
                 {
-                    this.SetLabel(this.Key);
+                    SetLabel(Key);
                 }
             }
         };

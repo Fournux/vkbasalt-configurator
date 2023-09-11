@@ -17,34 +17,34 @@ public class SmaaSettings : Adw.ExpanderRow
 
     public bool Enabled
     {
-        get { return this.gtkSwitch!.GetActive(); }
-        set { this.gtkSwitch!.SetActive(value); }
+        get { return gtkSwitch!.GetActive(); }
+        set { gtkSwitch!.SetActive(value); }
     }
     public double Edge
     {
-        get { return this.spinEdge!.GetValue(); }
-        set { this.spinEdge!.SetValue(value); }
+        get { return spinEdge!.GetValue(); }
+        set { spinEdge!.SetValue(value); }
     }
 
     public double Steps
     {
-        get { return this.spinSteps!.GetValue(); }
-        set { this.spinSteps!.SetValue(value); }
+        get { return spinSteps!.GetValue(); }
+        set { spinSteps!.SetValue(value); }
     }
     public double DiagSteps
     {
-        get { return this.spinDiagSteps!.GetValue(); }
-        set { this.spinDiagSteps!.SetValue(value); }
+        get { return spinDiagSteps!.GetValue(); }
+        set { spinDiagSteps!.SetValue(value); }
     }
     public double Corner
     {
-        get { return this.spinCorner!.GetValue(); }
-        set { this.spinCorner!.SetValue(value); }
+        get { return spinCorner!.GetValue(); }
+        set { spinCorner!.SetValue(value); }
     }
 
     public SmaaEdgeDetection EdgeDetection
     {
-        get { return this.toggleColor!.Active ? SmaaEdgeDetection.Color : SmaaEdgeDetection.Luma; }
+        get { return toggleColor!.Active ? SmaaEdgeDetection.Color : SmaaEdgeDetection.Luma; }
         set
         {
             var toggle = value == SmaaEdgeDetection.Luma ? toggleLuma : toggleColor;

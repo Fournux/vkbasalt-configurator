@@ -2,26 +2,24 @@ namespace ui;
 
 public class DeleteRow : Adw.ActionRow
 {
-    private readonly Gtk.Button deleteButton;
+#pragma warning disable 0649
+    [Gtk.Connect] private readonly Gtk.Button? deleteButton;
+#pragma warning restore 0649
     public delegate void OnDeleteHandler();
     public event OnDeleteHandler? OnDelete;
-    public DeleteRow(string title)
+
+
+    private DeleteRow(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
-        var content = new Adw.ButtonContent();
-        content.SetIconName("close-symbolic");
-
-        deleteButton = new Gtk.Button();
-        deleteButton.AddCssClass("circular");
-        deleteButton.AddCssClass("flat");
-        deleteButton.SetValign(Gtk.Align.Center);
-        deleteButton.SetChild(content);
-
+        builder.Connect(this);
         deleteButton!.OnClicked += (sender, args) =>
         {
             OnDelete?.Invoke();
         };
+    }
 
-        AddSuffix(deleteButton);
-        SetTitle(title);
+    public DeleteRow(string title) : this(new Gtk.Builder("DeleteRow.ui"), "deleteRow")
+    {
+        this.SetTitle(title);
     }
 }

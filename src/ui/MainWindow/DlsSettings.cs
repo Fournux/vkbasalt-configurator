@@ -12,28 +12,28 @@ public class DlsSettings : Adw.ExpanderRow
 
     public bool Enabled
     {
-        get { return this.gtkSwitch!.GetActive(); }
-        set { this.gtkSwitch!.SetActive(value); }
+        get { return gtkSwitch!.GetActive(); }
+        set { gtkSwitch!.SetActive(value); }
     }
 
     public double Sharpness
     {
-        get { return this.spinSharpness!.GetValue(); }
-        set { this.spinSharpness!.SetValue(value); }
+        get { return spinSharpness!.GetValue(); }
+        set { spinSharpness!.SetValue(value); }
     }
 
     public double Denoise
     {
-        get { return this.spinDenoise!.GetValue(); }
-        set { this.spinDenoise!.SetValue(value); }
+        get { return spinDenoise!.GetValue(); }
+        set { spinDenoise!.SetValue(value); }
     }
 
     private DlsSettings(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
 
-        this.gtkSwitch!.BindProperty("active", this, "expanded", GObject.BindingFlags.SyncCreate);
-        this.gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
+        gtkSwitch!.BindProperty("active", this, "expanded", GObject.BindingFlags.SyncCreate);
+        gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
     public DlsSettings() : this(new Gtk.Builder("DlsSettings.ui"), "dlsSettings")
