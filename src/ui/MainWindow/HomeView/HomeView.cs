@@ -55,17 +55,25 @@ public class HomeView : Gtk.Box
         if (files.Count == 0) recentFilesContainer!.SetVisible(false);
         else recentFilesContainer!.SetVisible(true);
 
+        recentFilesContainer.OnRowActivated += (sender, args) =>
+        {
+            var row = (DeleteRow)args.Row;
+            OnFileSelected?.Invoke(row.GetTitle());
+        };
+
+        recentFilesContainer.SetActivateOnSingleClick(true);
+
+
         foreach (var file in files)
         {
             var row = new DeleteRow(file);
 
-            row.OnNotify += (sender, args) =>
+            row.OnDelete += () =>
             {
-                if (args.Pspec.GetName() == "has-focus" && row.GetHasFocus())
-                {
-                    OnFileSelected?.Invoke(file);
-                }
+                StateManager.State.RecentFiles.Remove(file);
             };
+
+            row.SetActivatable(true);
             recentFileRows!.Add(row);
             recentFilesContainer!.Prepend(row);
         }

@@ -16,7 +16,11 @@ public class ConfigFile
             if (!line.StartsWith('#') && line.Contains('='))
             {
                 var data = line.Split('=');
-                raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
+                var key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
+                if (!raw.ContainsKey(key))
+                {
+                    raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
+                }
             }
         }
     }

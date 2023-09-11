@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-using Adw;
 using MessagePack;
 
 namespace core.ApplicationState;
@@ -12,6 +10,7 @@ public static class StateManager
 
     private static void Persist(State settings)
     {
+        File.Delete(Location);
         byte[] bytes = MessagePackSerializer.Serialize(settings);
         File.WriteAllBytes(Location, bytes);
     }
