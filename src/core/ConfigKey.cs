@@ -1,21 +1,24 @@
-public enum ConfigKey
+namespace core
 {
-    CasSharpness,
-    DepthCapture,
-    DlsDenoise,
-    DlsSharpness,
-    Effects,
-    EnableOnLaunch,
-    FxaaQualityEdgeThreshold,
-    FxaaQualityEdgeThresholdMin,
-    FxaaQualitySubpix,
-    LutFile,
-    ReshadeIncludePath,
-    ReshadeTexturePath,
-    SmaaCornerRounding,
-    SmaaEdgeDetection,
-    SmaaMaxSearchSteps,
-    SmaaMaxSearchStepsDiag,
-    SmaaThreshold,
-    ToggleKey,
+    public enum ConfigKey
+    {
+        CasSharpness,
+        DepthCapture,
+        DlsDenoise,
+        DlsSharpness,
+        Effects,
+        EnableOnLaunch,
+        FxaaQualityEdgeThreshold,
+        FxaaQualityEdgeThresholdMin,
+        FxaaQualitySubpix,
+        LutFile,
+        ReshadeIncludePath,
+        ReshadeTexturePath,
+        SmaaCornerRounding,
+        SmaaEdgeDetection,
+        SmaaMaxSearchSteps,
+        SmaaMaxSearchStepsDiag,
+        SmaaThreshold,
+        ToggleKey,
+    }
 }

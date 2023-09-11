@@ -20,15 +20,15 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         builder.Connect(this);
 
-        this.configView = new ConfigView();
+        configView = new ConfigView();
 
-        this.homeView = new HomeView(this);
-        this.homeView.OnFileSelected += this.OpenConfigFile;
-        this.clamp!.SetChild(homeView);
+        homeView = new HomeView(this);
+        homeView.OnFileSelected += OpenConfigFile;
+        clamp!.SetChild(homeView);
 
-        this.closeButton!.OnClicked += (_, _) => this.CloseConfigFile();
-        this.saveButton!.OnClicked += (_, _) => this.SaveConfigFile();
-        this.OnCloseRequest += (_, _) =>
+        closeButton!.OnClicked += (_, _) => CloseConfigFile();
+        saveButton!.OnClicked += (_, _) => SaveConfigFile();
+        OnCloseRequest += (_, _) =>
         {
             StateManager.Persist();
             return false;
@@ -39,8 +39,7 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         configFile = new ConfigFile(file);
         configView!.LoadConfigFile(configFile);
-        StateManager.State.RecentFiles.Add(file);
-
+        _ = StateManager.State.RecentFiles.Add(file);
 
         clamp!.SetChild(configView);
         closeButton!.SetVisible(true);
@@ -49,7 +48,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
     private void CloseConfigFile()
     {
-        this.SaveConfigFile();
+        SaveConfigFile();
         clamp!.SetChild(homeView);
         closeButton!.SetVisible(false);
         saveButton!.SetVisible(false);
@@ -63,6 +62,6 @@ public class MainWindow : Gtk.ApplicationWindow
 
     public MainWindow(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")
     {
-        this.Application = application;
+        Application = application;
     }
 }

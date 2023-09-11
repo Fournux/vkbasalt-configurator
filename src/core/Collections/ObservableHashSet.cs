@@ -1,11 +1,13 @@
+using System.Collections;
+using System.Collections.Specialized;
+using System.ComponentModel;
+
 namespace core.Collections;
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using System.Collections;
-using System.Collections.Specialized;
-using System.ComponentModel;
+
 
 /// <summary>
 ///     A hash set that implements the interfaces required for Entity Framework to use notification based change tracking
@@ -89,7 +91,9 @@ public class ObservableHashSet<T>
     public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
     void ICollection<T>.Add(T item)
-        => Add(item);
+    {
+        _ = Add(item);
+    }
 
     /// <summary>
     ///     Removes all elements from the hash set.
@@ -103,7 +107,7 @@ public class ObservableHashSet<T>
 
         OnCountPropertyChanging();
 
-        var removed = this.ToList();
+        List<T> removed = this.ToList();
 
         _set.Clear();
 
@@ -121,7 +125,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set contains the specified element; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool Contains(T item)
-        => _set.Contains(item);
+    {
+        return _set.Contains(item);
+    }
 
     /// <summary>
     ///     Copies the elements of the hash set to an array, starting at the specified array index.
@@ -132,7 +138,9 @@ public class ObservableHashSet<T>
     /// </param>
     /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
     public virtual void CopyTo(T[] array, int arrayIndex)
-        => _set.CopyTo(array, arrayIndex);
+    {
+        _set.CopyTo(array, arrayIndex);
+    }
 
     /// <summary>
     ///     Removes the specified element from the hash set.
@@ -150,7 +158,7 @@ public class ObservableHashSet<T>
 
         OnCountPropertyChanging();
 
-        _set.Remove(item);
+        _ = _set.Remove(item);
 
         OnCollectionChanged(NotifyCollectionChangedAction.Remove, item);
 
@@ -178,15 +186,21 @@ public class ObservableHashSet<T>
     ///     An enumerator for the hash set.
     /// </returns>
     public virtual HashSet<T>.Enumerator GetEnumerator()
-        => _set.GetEnumerator();
+    {
+        return _set.GetEnumerator();
+    }
 
     /// <inheritdoc />
     IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        => GetEnumerator();
+    {
+        return GetEnumerator();
+    }
 
     /// <inheritdoc />
     IEnumerator IEnumerable.GetEnumerator()
-        => GetEnumerator();
+    {
+        return GetEnumerator();
+    }
 
     /// <summary>
     ///     Adds the specified element to the hash set.
@@ -204,7 +218,7 @@ public class ObservableHashSet<T>
 
         OnCountPropertyChanging();
 
-        _set.Add(item);
+        _ = _set.Add(item);
 
         OnCollectionChanged(NotifyCollectionChangedAction.Add, item);
 
@@ -219,7 +233,7 @@ public class ObservableHashSet<T>
     /// <param name="other">The collection to compare to the current hash set.</param>
     public virtual void UnionWith(IEnumerable<T> other)
     {
-        var copy = new HashSet<T>(_set, _set.Comparer);
+        HashSet<T> copy = new(_set, _set.Comparer);
 
         copy.UnionWith(other);
 
@@ -228,7 +242,7 @@ public class ObservableHashSet<T>
             return;
         }
 
-        var added = copy.Where(i => !_set.Contains(i)).ToList();
+        List<T> added = copy.Where(i => !_set.Contains(i)).ToList();
 
         OnCountPropertyChanging();
 
@@ -246,7 +260,7 @@ public class ObservableHashSet<T>
     /// <param name="other">The collection to compare to the current hash set.</param>
     public virtual void IntersectWith(IEnumerable<T> other)
     {
-        var copy = new HashSet<T>(_set, _set.Comparer);
+        HashSet<T> copy = new(_set, _set.Comparer);
 
         copy.IntersectWith(other);
 
@@ -255,7 +269,7 @@ public class ObservableHashSet<T>
             return;
         }
 
-        var removed = _set.Where(i => !copy.Contains(i)).ToList();
+        List<T> removed = _set.Where(i => !copy.Contains(i)).ToList();
 
         OnCountPropertyChanging();
 
@@ -272,7 +286,7 @@ public class ObservableHashSet<T>
     /// <param name="other">The collection of items to remove from the current hash set.</param>
     public virtual void ExceptWith(IEnumerable<T> other)
     {
-        var copy = new HashSet<T>(_set, _set.Comparer);
+        HashSet<T> copy = new(_set, _set.Comparer);
 
         copy.ExceptWith(other);
 
@@ -281,7 +295,7 @@ public class ObservableHashSet<T>
             return;
         }
 
-        var removed = _set.Where(i => !copy.Contains(i)).ToList();
+        List<T> removed = _set.Where(i => !copy.Contains(i)).ToList();
 
         OnCountPropertyChanging();
 
@@ -299,12 +313,12 @@ public class ObservableHashSet<T>
     /// <param name="other">The collection to compare to the current hash set.</param>
     public virtual void SymmetricExceptWith(IEnumerable<T> other)
     {
-        var copy = new HashSet<T>(_set, _set.Comparer);
+        HashSet<T> copy = new(_set, _set.Comparer);
 
         copy.SymmetricExceptWith(other);
 
-        var removed = _set.Where(i => !copy.Contains(i)).ToList();
-        var added = copy.Where(i => !_set.Contains(i)).ToList();
+        List<T> removed = _set.Where(i => !copy.Contains(i)).ToList();
+        List<T> added = copy.Where(i => !_set.Contains(i)).ToList();
 
         if (removed.Count == 0
             && added.Count == 0)
@@ -329,7 +343,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set is a subset of other; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool IsSubsetOf(IEnumerable<T> other)
-        => _set.IsSubsetOf(other);
+    {
+        return _set.IsSubsetOf(other);
+    }
 
     /// <summary>
     ///     Determines whether the hash set is a proper subset of the specified collection.
@@ -339,7 +355,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set is a proper subset of other; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool IsProperSubsetOf(IEnumerable<T> other)
-        => _set.IsProperSubsetOf(other);
+    {
+        return _set.IsProperSubsetOf(other);
+    }
 
     /// <summary>
     ///     Determines whether the hash set is a superset of the specified collection.
@@ -349,7 +367,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set is a superset of other; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool IsSupersetOf(IEnumerable<T> other)
-        => _set.IsSupersetOf(other);
+    {
+        return _set.IsSupersetOf(other);
+    }
 
     /// <summary>
     ///     Determines whether the hash set is a proper superset of the specified collection.
@@ -359,7 +379,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set is a proper superset of other; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool IsProperSupersetOf(IEnumerable<T> other)
-        => _set.IsProperSupersetOf(other);
+    {
+        return _set.IsProperSupersetOf(other);
+    }
 
     /// <summary>
     ///     Determines whether the current System.Collections.Generic.HashSet`1 object and a specified collection share common elements.
@@ -369,7 +391,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set and other share at least one common element; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool Overlaps(IEnumerable<T> other)
-        => _set.Overlaps(other);
+    {
+        return _set.Overlaps(other);
+    }
 
     /// <summary>
     ///     Determines whether the hash set and the specified collection contain the same elements.
@@ -379,7 +403,9 @@ public class ObservableHashSet<T>
     ///     <see langword="true" /> if the hash set is equal to other; otherwise, <see langword="false" />.
     /// </returns>
     public virtual bool SetEquals(IEnumerable<T> other)
-        => _set.SetEquals(other);
+    {
+        return _set.SetEquals(other);
+    }
 
     /// <summary>
     ///     Copies the elements of the hash set to an array.
@@ -389,7 +415,9 @@ public class ObservableHashSet<T>
     ///     the hash set. The array must have zero-based indexing.
     /// </param>
     public virtual void CopyTo(T[] array)
-        => _set.CopyTo(array);
+    {
+        _set.CopyTo(array);
+    }
 
     /// <summary>
     ///     Copies the specified number of elements of the hash set to an array, starting at the specified array index.
@@ -401,7 +429,9 @@ public class ObservableHashSet<T>
     /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
     /// <param name="count">The number of elements to copy to array.</param>
     public virtual void CopyTo(T[] array, int arrayIndex, int count)
-        => _set.CopyTo(array, arrayIndex, count);
+    {
+        _set.CopyTo(array, arrayIndex, count);
+    }
 
     /// <summary>
     ///     Removes all elements that match the conditions defined by the specified predicate
@@ -413,16 +443,16 @@ public class ObservableHashSet<T>
     /// <returns>The number of elements that were removed from the hash set.</returns>
     public virtual int RemoveWhere(Predicate<T> match)
     {
-        var copy = new HashSet<T>(_set, _set.Comparer);
+        HashSet<T> copy = new(_set, _set.Comparer);
 
-        var removedCount = copy.RemoveWhere(match);
+        int removedCount = copy.RemoveWhere(match);
 
         if (removedCount == 0)
         {
             return 0;
         }
 
-        var removed = _set.Where(i => !copy.Contains(i)).ToList();
+        List<T> removed = _set.Where(i => !copy.Contains(i)).ToList();
 
         OnCountPropertyChanging();
 
@@ -446,40 +476,56 @@ public class ObservableHashSet<T>
     ///     implementation-specific value.
     /// </summary>
     public virtual void TrimExcess()
-        => _set.TrimExcess();
+    {
+        _set.TrimExcess();
+    }
 
     /// <summary>
     ///     Raises the <see cref="PropertyChanged" /> event.
     /// </summary>
     /// <param name="e">Details of the property that changed.</param>
     protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
-        => PropertyChanged?.Invoke(this, e);
+    {
+        PropertyChanged?.Invoke(this, e);
+    }
 
     /// <summary>
     ///     Raises the <see cref="PropertyChanging" /> event.
     /// </summary>
     /// <param name="e">Details of the property that is changing.</param>
     protected virtual void OnPropertyChanging(PropertyChangingEventArgs e)
-        => PropertyChanging?.Invoke(this, e);
+    {
+        PropertyChanging?.Invoke(this, e);
+    }
 
     private void OnCountPropertyChanged()
-        => OnPropertyChanged(ObservableHashSetSingletons.CountPropertyChanged);
+    {
+        OnPropertyChanged(ObservableHashSetSingletons.CountPropertyChanged);
+    }
 
     private void OnCountPropertyChanging()
-        => OnPropertyChanging(ObservableHashSetSingletons.CountPropertyChanging);
+    {
+        OnPropertyChanging(ObservableHashSetSingletons.CountPropertyChanging);
+    }
 
     private void OnCollectionChanged(NotifyCollectionChangedAction action, object? item)
-        => OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item));
+    {
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(action, item));
+    }
 
     private void OnCollectionChanged(IList newItems, IList oldItems)
-        => OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, newItems, oldItems));
+    {
+        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, newItems, oldItems));
+    }
 
     /// <summary>
     ///     Raises the <see cref="CollectionChanged" /> event.
     /// </summary>
     /// <param name="e">Details of the change.</param>
     protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        => CollectionChanged?.Invoke(this, e);
+    {
+        CollectionChanged?.Invoke(this, e);
+    }
 }
 
 internal static class ObservableHashSetSingletons

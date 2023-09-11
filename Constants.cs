@@ -4,18 +4,18 @@ public static class Constants
     /// see https://developer.gnome.org/documentation/tutorials/application-id.html.
     /// This should be automatically replaced when the application is created.
     /// </summary>
-    public const string APP_ID = "org.fournux.vkbasalt.configurator";
+    public const string APPID = "org.fournux.vkbasalt.configurator";
 
     /// <summary>
     /// A shorter name for the application.
     /// This is case sensitive and should not contain spaces.
     /// This should be automatically replaced when the application is created.
     /// </summary>
-    public const string APP_SHORT_NAME = "vkbasalt_configurator";
+    public const string APPSHORTNAME = "vkbasalt_configurator";
 
     /// <summary>
     /// The display name of the application.
     /// This should be automatically replaced when the application is created.
     /// </summary>
-    public const string APP_DISPLAY_NAME = "vkbasalt-configurator";
+    public const string APPDISPLAYNAME = "vkbasalt-configurator";
 }

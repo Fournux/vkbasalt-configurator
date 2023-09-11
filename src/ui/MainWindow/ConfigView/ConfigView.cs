@@ -17,50 +17,50 @@ public class ConfigView : Gtk.Box
 
     public ConfigView()
     {
-        this.SetOrientation(Gtk.Orientation.Vertical);
-        this.SetMarginTop(10);
-        this.SetSpacing(10);
+        SetOrientation(Gtk.Orientation.Vertical);
+        SetMarginTop(10);
+        SetSpacing(10);
 
-        this.keySelectorRow = new KeySelectorRow("Toggle key");
-        this.switchRow = new SwitchRow("Enable on start");
-        this.casSettings = new CasSettings();
-        this.dlsSettings = new DlsSettings();
-        this.fxaaSettings = new FxaaSettings();
-        this.smaaSettings = new SmaaSettings();
+        keySelectorRow = new KeySelectorRow("Toggle key");
+        switchRow = new SwitchRow("Enable on start");
+        casSettings = new CasSettings();
+        dlsSettings = new DlsSettings();
+        fxaaSettings = new FxaaSettings();
+        smaaSettings = new SmaaSettings();
 
-        this.Append(switchRow);
-        this.Append(keySelectorRow);
-        this.Append(casSettings);
-        this.Append(dlsSettings);
-        this.Append(fxaaSettings);
-        this.Append(smaaSettings);
+        Append(switchRow);
+        Append(keySelectorRow);
+        Append(casSettings);
+        Append(dlsSettings);
+        Append(fxaaSettings);
+        Append(smaaSettings);
     }
 
     public void LoadConfigFile(ConfigFile configFile)
     {
-        var enableOnLaunch = configFile.Get<bool>(ConfigKey.EnableOnLaunch);
-        var toggleKey = configFile.Get<string>(ConfigKey.ToggleKey);
+        bool enableOnLaunch = configFile.Get<bool>(ConfigKey.EnableOnLaunch);
+        string toggleKey = configFile.Get<string>(ConfigKey.ToggleKey);
 
-        var effects = configFile.Get<string>(ConfigKey.Effects);
+        string effects = configFile.Get<string>(ConfigKey.Effects);
 
-        var casEnabled = effects.Contains("cas");
-        var casSharpness = configFile.Get<double>(ConfigKey.CasSharpness);
+        bool casEnabled = effects.Contains("cas");
+        double casSharpness = configFile.Get<double>(ConfigKey.CasSharpness);
 
-        var dlsEnabled = effects.Contains("dls");
-        var dlsSharpness = configFile.Get<double>(ConfigKey.DlsSharpness);
-        var dlsDenoise = configFile.Get<double>(ConfigKey.DlsDenoise);
+        bool dlsEnabled = effects.Contains("dls");
+        double dlsSharpness = configFile.Get<double>(ConfigKey.DlsSharpness);
+        double dlsDenoise = configFile.Get<double>(ConfigKey.DlsDenoise);
 
-        var fxaaEnabled = effects.Contains("fxaa");
-        var fxaaQualitySubpix = configFile.Get<double>(ConfigKey.FxaaQualitySubpix);
-        var fxaaQualityEdgeThreshold = configFile.Get<double>(ConfigKey.FxaaQualityEdgeThreshold);
-        var fxaaQualityEdgeThresholdMin = configFile.Get<double>(ConfigKey.FxaaQualityEdgeThresholdMin);
+        bool fxaaEnabled = effects.Contains("fxaa");
+        double fxaaQualitySubpix = configFile.Get<double>(ConfigKey.FxaaQualitySubpix);
+        double fxaaQualityEdgeThreshold = configFile.Get<double>(ConfigKey.FxaaQualityEdgeThreshold);
+        double fxaaQualityEdgeThresholdMin = configFile.Get<double>(ConfigKey.FxaaQualityEdgeThresholdMin);
 
-        var smaaEnabled = effects.Contains("smaa");
-        var smaaEdgeDetection = configFile.Get<string>(ConfigKey.SmaaEdgeDetection);
-        var smaaThreshold = configFile.Get<double>(ConfigKey.SmaaThreshold);
-        var smaaMaxSearchSteps = configFile.Get<double>(ConfigKey.SmaaMaxSearchSteps);
-        var smaaMaxSearchStepsDiag = configFile.Get<double>(ConfigKey.SmaaMaxSearchStepsDiag);
-        var smaaCornerRounding = configFile.Get<double>(ConfigKey.SmaaCornerRounding);
+        bool smaaEnabled = effects.Contains("smaa");
+        string smaaEdgeDetection = configFile.Get<string>(ConfigKey.SmaaEdgeDetection);
+        double smaaThreshold = configFile.Get<double>(ConfigKey.SmaaThreshold);
+        double smaaMaxSearchSteps = configFile.Get<double>(ConfigKey.SmaaMaxSearchSteps);
+        double smaaMaxSearchStepsDiag = configFile.Get<double>(ConfigKey.SmaaMaxSearchStepsDiag);
+        double smaaCornerRounding = configFile.Get<double>(ConfigKey.SmaaCornerRounding);
 
         switchRow.Active = enableOnLaunch;
         keySelectorRow.Key = toggleKey;
@@ -101,11 +101,26 @@ public class ConfigView : Gtk.Box
         configFile.Set(ConfigKey.SmaaMaxSearchStepsDiag, smaaSettings.DiagSteps);
         configFile.Set(ConfigKey.SmaaCornerRounding, smaaSettings.Corner);
 
-        var effects = new List<string>();
-        if (casSettings.Enabled) effects.Add("cas");
-        if (dlsSettings.Enabled) effects.Add("dls");
-        if (fxaaSettings.Enabled) effects.Add("fxaa");
-        if (smaaSettings.Enabled) effects.Add("smaa");
+        List<string> effects = new();
+        if (casSettings.Enabled)
+        {
+            effects.Add("cas");
+        }
+
+        if (dlsSettings.Enabled)
+        {
+            effects.Add("dls");
+        }
+
+        if (fxaaSettings.Enabled)
+        {
+            effects.Add("fxaa");
+        }
+
+        if (smaaSettings.Enabled)
+        {
+            effects.Add("smaa");
+        }
 
         configFile.Set(ConfigKey.Effects, string.Join(':', effects));
     }

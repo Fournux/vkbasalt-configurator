@@ -11,12 +11,12 @@ public class ConfigFile
     {
         Path = path;
         raw = new Dictionary<ConfigKey, string>();
-        foreach (var line in File.ReadLines(Path))
+        foreach (string line in File.ReadLines(Path))
         {
             if (!line.StartsWith('#') && line.Contains('='))
             {
-                var data = line.Split('=');
-                var key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
+                string[] data = line.Split('=');
+                ConfigKey key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
                 if (!raw.ContainsKey(key))
                 {
                     raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
@@ -27,17 +27,13 @@ public class ConfigFile
 
     public T Get<T>(ConfigKey key)
     {
-        string value = raw.TryGetValue(key, out var _value) ? _value : DefaultValue(key);
+        string value = raw.TryGetValue(key, out string? _value) ? _value : DefaultValue(key);
         return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
     }
 
-    public void Set<T>(ConfigKey key, T _value)
+    public void Set<T>(ConfigKey key, T value)
     {
-        string str;
-        if (_value is double value) str = value.ToString("0.#####", CultureInfo.InvariantCulture)!;
-        else str = _value!.ToString()!;
-
-        raw[key] = str;
+        raw[key] = value is double _value ? _value.ToString("0.#####", CultureInfo.InvariantCulture) : value!.ToString()!;
     }
 
     public void Save()
@@ -45,8 +41,8 @@ public class ConfigFile
         using StreamWriter writer = new(Path);
         foreach (KeyValuePair<ConfigKey, string> entry in raw)
         {
-            var key = entry.Key.ToString();
-            writer.WriteLine(string.Format("{0} = {1}", char.ToLower(key[0]) + key[1..], entry.Value));
+            string key = entry.Key.ToString();
+            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} = {1}", char.ToLower(key[0], CultureInfo.InvariantCulture) + key[1..], entry.Value));
         }
     }
 

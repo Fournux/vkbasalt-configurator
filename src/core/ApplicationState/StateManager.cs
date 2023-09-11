@@ -4,7 +4,7 @@ namespace core.ApplicationState;
 
 public static class StateManager
 {
-    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APP_ID + Path.DirectorySeparatorChar + "state.msgpack";
+    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APPID + Path.DirectorySeparatorChar + "state.msgpack";
 
     private static State? instance;
 

@@ -17,37 +17,37 @@ public class SmaaSettings : Adw.ExpanderRow
 
     public bool Enabled
     {
-        get { return gtkSwitch!.GetActive(); }
-        set { gtkSwitch!.SetActive(value); }
+        get => gtkSwitch!.GetActive();
+        set => gtkSwitch!.SetActive(value);
     }
     public double Edge
     {
-        get { return spinEdge!.GetValue(); }
-        set { spinEdge!.SetValue(value); }
+        get => spinEdge!.GetValue();
+        set => spinEdge!.SetValue(value);
     }
 
     public double Steps
     {
-        get { return spinSteps!.GetValue(); }
-        set { spinSteps!.SetValue(value); }
+        get => spinSteps!.GetValue();
+        set => spinSteps!.SetValue(value);
     }
     public double DiagSteps
     {
-        get { return spinDiagSteps!.GetValue(); }
-        set { spinDiagSteps!.SetValue(value); }
+        get => spinDiagSteps!.GetValue();
+        set => spinDiagSteps!.SetValue(value);
     }
     public double Corner
     {
-        get { return spinCorner!.GetValue(); }
-        set { spinCorner!.SetValue(value); }
+        get => spinCorner!.GetValue();
+        set => spinCorner!.SetValue(value);
     }
 
     public SmaaEdgeDetection EdgeDetection
     {
-        get { return toggleColor!.Active ? SmaaEdgeDetection.Color : SmaaEdgeDetection.Luma; }
+        get => toggleColor!.Active ? SmaaEdgeDetection.Color : SmaaEdgeDetection.Luma;
         set
         {
-            var toggle = value == SmaaEdgeDetection.Luma ? toggleLuma : toggleColor;
+            Gtk.ToggleButton? toggle = value == SmaaEdgeDetection.Luma ? toggleLuma : toggleColor;
             if (!toggle!.Active)
             {
                 toggle.SetActive(true);
@@ -59,12 +59,12 @@ public class SmaaSettings : Adw.ExpanderRow
     {
         builder.Connect(this);
 
-        this.gtkSwitch!.BindProperty("active", this, "expanded", GObject.BindingFlags.SyncCreate);
-        this.gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
+        _ = gtkSwitch!.BindProperty("active", this, "expanded", GObject.BindingFlags.SyncCreate);
+        _ = gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
     public SmaaSettings() : this(new Gtk.Builder("SmaaSettings.ui"), "smaaSettings")
     {
-        this.EdgeDetection = SmaaEdgeDetection.Color;
+        EdgeDetection = SmaaEdgeDetection.Color;
     }
 }

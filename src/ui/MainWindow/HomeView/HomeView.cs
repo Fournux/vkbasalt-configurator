@@ -1,5 +1,5 @@
 using core.ApplicationState;
-using GLib;
+using core.Collections;
 using ui.Helper;
 
 namespace ui;
@@ -12,7 +12,7 @@ public class HomeView : Gtk.Box
     [Gtk.Connect] private readonly Gtk.ListBox? recentFilesContainer;
 #pragma warning restore 0649
     private readonly Gtk.Window? window;
-    private ICollection<DeleteRow> recentFileRows = new List<DeleteRow>();
+    private readonly ICollection<DeleteRow> recentFileRows = new List<DeleteRow>();
     public delegate void FileSelectedCallback(string file);
     public event FileSelectedCallback? OnFileSelected;
 
@@ -28,7 +28,7 @@ public class HomeView : Gtk.Box
             }
         };
 
-        var files = StateManager.State.RecentFiles;
+        ObservableHashSet<string> files = StateManager.State.RecentFiles;
 
         files.CollectionChanged += (_, _) =>
         {
@@ -45,32 +45,38 @@ public class HomeView : Gtk.Box
 
     public void UpdateRecentFiles(ICollection<string> files)
     {
-        foreach (var file in recentFileRows)
+        foreach (DeleteRow file in recentFileRows)
         {
             recentFilesContainer!.Remove(file);
         }
 
         recentFileRows.Clear();
 
-        if (files.Count == 0) recentFilesContainer!.SetVisible(false);
-        else recentFilesContainer!.SetVisible(true);
+        if (files.Count == 0)
+        {
+            recentFilesContainer!.SetVisible(false);
+        }
+        else
+        {
+            recentFilesContainer!.SetVisible(true);
+        }
 
         recentFilesContainer.OnRowActivated += (sender, args) =>
         {
-            var row = (DeleteRow)args.Row;
+            DeleteRow row = (DeleteRow)args.Row;
             OnFileSelected?.Invoke(row.GetTitle());
         };
 
         recentFilesContainer.SetActivateOnSingleClick(true);
 
 
-        foreach (var file in files)
+        foreach (string file in files)
         {
-            var row = new DeleteRow(file);
+            DeleteRow row = new(file);
 
             row.OnDelete += () =>
             {
-                StateManager.State.RecentFiles.Remove(file);
+                _ = StateManager.State.RecentFiles.Remove(file);
             };
 
             row.SetActivatable(true);
