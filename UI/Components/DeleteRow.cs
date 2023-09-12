@@ -1,4 +1,4 @@
-namespace ui;
+namespace UI.Components;
 
 public class DeleteRow : Adw.ActionRow
 {

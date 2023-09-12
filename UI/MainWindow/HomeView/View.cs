@@ -1,10 +1,11 @@
-using core.ApplicationState;
-using core.Collections;
-using ui.Helper;
+using Core.ApplicationState;
+using Core.Collections;
+using UI.Components;
+using UI.Helper;
 
-namespace ui;
+namespace UI.MainWindow.HomeView;
 
-public class HomeView : Gtk.Box
+public class View : Gtk.Box
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Gtk.Button? buttonExisting;
@@ -16,7 +17,7 @@ public class HomeView : Gtk.Box
     public delegate void FileSelectedCallback(string file);
     public event FileSelectedCallback? OnFileSelected;
 
-    private HomeView(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
+    private View(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
         buttonExisting!.OnClicked += async (sender, args) =>
@@ -38,7 +39,7 @@ public class HomeView : Gtk.Box
         UpdateRecentFiles(files);
     }
 
-    public HomeView(Gtk.Window window) : this(new Gtk.Builder("HomeView.ui"), "homeView")
+    public View(Gtk.Window window) : this(new Gtk.Builder("HomeView.ui"), "homeView")
     {
         this.window = window;
     }

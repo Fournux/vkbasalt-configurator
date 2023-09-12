@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace core.Collections;
+namespace Core.Collections;
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -14,7 +14,7 @@ namespace core.Collections;
 ///     for a collection navigation property.
 /// </summary>
 /// <remarks>
-///     See <see href="https://aka.ms/efcore-docs-local-views">Local views of tracked entities in EF Core</see> for more information and
+///     See <see href="https://aka.ms/efCore-docs-local-views">Local views of tracked entities in EF Core</see> for more information and
 ///     examples.
 /// </remarks>
 /// <typeparam name="T">The type of elements in the hash set.</typeparam>

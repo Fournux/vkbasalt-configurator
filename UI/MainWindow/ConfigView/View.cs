@@ -1,13 +1,10 @@
-using core;
-using GLib;
+using Core;
+using UI.Components;
 
-namespace ui;
+namespace UI.MainWindow.ConfigView;
 
-public class ConfigView : Gtk.Box
+public class View : Gtk.Box
 {
-#pragma warning disable 0649
-#pragma warning restore 0649
-
     private readonly KeySelectorRow keySelectorRow;
     private readonly SwitchRow switchRow;
     private readonly CasSettings casSettings;
@@ -15,7 +12,7 @@ public class ConfigView : Gtk.Box
     private readonly FxaaSettings fxaaSettings;
     private readonly SmaaSettings smaaSettings;
 
-    public ConfigView()
+    public View()
     {
         SetOrientation(Gtk.Orientation.Vertical);
         SetMarginTop(10);

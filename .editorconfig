@@ -6,4 +6,5 @@ root = true
 
 # Default severity for analyzer diagnostics with category 'Style' (escalated to build warnings)
 dotnet_analyzer_diagnostic.category-Style.severity = warning
-
+csharp_style_namespace_declarations = file_scoped
+dotnet_diagnostic.CA1707.severity = none

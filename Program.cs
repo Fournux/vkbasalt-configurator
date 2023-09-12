@@ -1,12 +1,14 @@
-﻿global using static Constants;
+﻿#pragma warning disable CA1852
 
-Adw.Application app = Adw.Application.New(APPID, Gio.ApplicationFlags.DefaultFlags);
+global using static Constants.ApplicationIdentity;
+
+Adw.Application app = Adw.Application.New(APP_ID, Gio.ApplicationFlags.DefaultFlags);
 
 app.OnActivate += (application, args) =>
 {
     // Create a new MainWindow and show it.
     // The application is passed to the MainWindow so that it can be used
-    ui.MainWindow mainWindow = new((Adw.Application)application);
+    UI.MainWindow.Window mainWindow = new((Adw.Application)application);
 
     mainWindow.Show();
 };

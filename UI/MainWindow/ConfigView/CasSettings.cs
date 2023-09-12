@@ -1,6 +1,4 @@
-using Adw;
-
-namespace ui;
+namespace UI.MainWindow.ConfigView;
 
 public class CasSettings : Adw.ExpanderRow
 {

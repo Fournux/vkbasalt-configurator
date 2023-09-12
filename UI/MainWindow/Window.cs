@@ -1,9 +1,9 @@
-using core.ApplicationState;
-using core;
+using Core;
+using Core.ApplicationState;
 
-namespace ui;
+namespace UI.MainWindow;
 
-public class MainWindow : Gtk.ApplicationWindow
+public class Window : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Adw.Clamp? clamp;
@@ -11,18 +11,18 @@ public class MainWindow : Gtk.ApplicationWindow
     [Gtk.Connect] private readonly Gtk.Button? closeButton;
 #pragma warning restore 0649
 
-    private readonly HomeView? homeView;
-    private readonly ConfigView? configView;
+    private readonly HomeView.View? homeView;
+    private readonly ConfigView.View? configView;
 
     private ConfigFile? configFile;
 
-    private MainWindow(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
+    private Window(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
 
-        configView = new ConfigView();
+        configView = new ConfigView.View();
 
-        homeView = new HomeView(this);
+        homeView = new HomeView.View(this);
         homeView.OnFileSelected += OpenConfigFile;
         clamp!.SetChild(homeView);
 
@@ -60,7 +60,7 @@ public class MainWindow : Gtk.ApplicationWindow
         configFile!.Save();
     }
 
-    public MainWindow(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")
+    public Window(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")
     {
         Application = application;
     }

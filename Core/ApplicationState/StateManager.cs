@@ -1,10 +1,10 @@
 using MessagePack;
 
-namespace core.ApplicationState;
+namespace Core.ApplicationState;
 
 public static class StateManager
 {
-    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APPID + Path.DirectorySeparatorChar + "state.msgpack";
+    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APP_ID + Path.DirectorySeparatorChar + "state.msgpack";
 
     private static State? instance;
 
@@ -21,7 +21,7 @@ public static class StateManager
         {
             if (instance == null)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(Location)!);
+                _ = Directory.CreateDirectory(Path.GetDirectoryName(Location)!);
                 if (!File.Exists(Location))
                 {
                     instance = new State();

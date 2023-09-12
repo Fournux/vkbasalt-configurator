@@ -1,4 +1,4 @@
-namespace ui.Helper;
+namespace UI.Helper;
 
 public static class FileHelper
 {

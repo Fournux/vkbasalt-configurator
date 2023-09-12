@@ -1,11 +1,11 @@
 using System.Globalization;
 
-namespace core;
+namespace Core;
 
 public class ConfigFile
 {
     public string Path { get; set; }
-    private IDictionary<ConfigKey, string> raw;
+    private readonly IDictionary<ConfigKey, string> raw;
 
     public ConfigFile(string path)
     {

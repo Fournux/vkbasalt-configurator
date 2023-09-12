@@ -1,17 +1,14 @@
-namespace ui;
+namespace UI.Components;
 
 public class KeySelector : Gtk.Button
 {
     private readonly Gtk.EventControllerKey keyController;
     public string Key
     {
-        get { return GetLabel()!; }
-        set
-        {
-            SetLabel(value);
-        }
+        get => GetLabel()!;
+        set => SetLabel(value);
     }
-    private bool Listening { get; set; } = false;
+    private bool Listening { get; set; }
 
     public KeySelector() : base()
     {
@@ -36,7 +33,6 @@ public class KeySelector : Gtk.Button
 
         AddController(keyController);
 
-
         OnClicked += (_, args) =>
         {
             SetLabel("Press any key");
@@ -54,5 +50,4 @@ public class KeySelector : Gtk.Button
             }
         };
     }
-
 }

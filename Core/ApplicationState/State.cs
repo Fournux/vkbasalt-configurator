@@ -1,7 +1,7 @@
-using core.Collections;
+using Core.Collections;
 using MessagePack;
 
-namespace core.ApplicationState;
+namespace Core.ApplicationState;
 
 [MessagePackObject]
 public class State
