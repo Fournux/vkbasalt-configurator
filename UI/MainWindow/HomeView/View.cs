@@ -20,21 +20,25 @@ public class View : Gtk.Box
     private View(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
+
         buttonExisting!.OnClicked += async (sender, args) =>
         {
-            Gio.File? file = await FileHelper.Select(window!, "Select a file", "Open");
+            Gio.File? file = await GtkHelper.Select(window!, "Select a file", "Open");
             if (file != null)
             {
                 OnFileSelected?.Invoke(file.GetPath()!);
             }
         };
 
+        buttonNew!.OnClicked += async (sender, args) =>
+        {
+            Gio.File? file = await GtkHelper.SelectFolder(window!, "Select a folder", "Open");
+
+        };
+
         ObservableHashSet<string> files = StateManager.State.RecentFiles;
 
-        files.CollectionChanged += (_, _) =>
-        {
-            UpdateRecentFiles(files);
-        };
+        files.CollectionChanged += (_, _) => UpdateRecentFiles(files);
 
         UpdateRecentFiles(files);
     }
@@ -70,16 +74,10 @@ public class View : Gtk.Box
 
         recentFilesContainer.SetActivateOnSingleClick(true);
 
-
         foreach (string file in files)
         {
             DeleteRow row = new(file);
-
-            row.OnDelete += () =>
-            {
-                _ = StateManager.State.RecentFiles.Remove(file);
-            };
-
+            row.OnDelete += () => StateManager.State.RecentFiles.Remove(file);
             row.SetActivatable(true);
             recentFileRows!.Add(row);
             recentFilesContainer!.Prepend(row);

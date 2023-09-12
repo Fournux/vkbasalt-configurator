@@ -20,6 +20,6 @@ public class DeleteRow : Adw.ActionRow
 
     public DeleteRow(string title) : this(new Gtk.Builder("DeleteRow.ui"), "deleteRow")
     {
-        this.SetTitle(title);
+        SetTitle(title);
     }
 }

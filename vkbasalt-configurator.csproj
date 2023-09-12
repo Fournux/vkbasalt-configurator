@@ -21,7 +21,7 @@
 
   <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
     <!-- Build Blueprints -->
-    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/UI/Blueprint $(MSBuildProjectDirectory)/UI/Blueprint/**/*.blp" />
+    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/UI/Blueprint $(MSBuildProjectDirectory)/UI/Blueprint/**/**/*.blp" />
   </Target>
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">

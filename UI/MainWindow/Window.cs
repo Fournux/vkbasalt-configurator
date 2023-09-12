@@ -8,7 +8,6 @@ public class Window : Gtk.ApplicationWindow
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Adw.Clamp? clamp;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
-    [Gtk.Connect] private readonly Gtk.Button? closeButton;
 #pragma warning restore 0649
 
     private readonly HomeView.View? homeView;
@@ -26,7 +25,6 @@ public class Window : Gtk.ApplicationWindow
         homeView.OnFileSelected += OpenConfigFile;
         clamp!.SetChild(homeView);
 
-        closeButton!.OnClicked += (_, _) => CloseConfigFile();
         saveButton!.OnClicked += (_, _) => SaveConfigFile();
         OnCloseRequest += (_, _) =>
         {
@@ -42,17 +40,15 @@ public class Window : Gtk.ApplicationWindow
         _ = StateManager.State.RecentFiles.Add(file);
 
         clamp!.SetChild(configView);
-        closeButton!.SetVisible(true);
         saveButton!.SetVisible(true);
     }
 
-    private void CloseConfigFile()
-    {
-        SaveConfigFile();
-        clamp!.SetChild(homeView);
-        closeButton!.SetVisible(false);
-        saveButton!.SetVisible(false);
-    }
+    // private void CloseConfigFile()
+    // {
+    //     SaveConfigFile();
+    //     clamp!.SetChild(homeView);
+    //     saveButton!.SetVisible(false);
+    // }
 
     private void SaveConfigFile()
     {

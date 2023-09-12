@@ -12,22 +12,16 @@ Gtk.ApplicationWindow mainWindow {
     
     [start]
     Box {
+
+    }
+
+    [end]
+    Box {
       Button saveButton {
         visible: false;
         Adw.ButtonContent {
           icon-name:"document-save-symbolic";
           label: "Save";
-        }
-      }
-    }
-
-    [end]
-    Box {
-      Button closeButton {
-        visible: false;
-        Adw.ButtonContent {
-          icon-name:"close-symbolic";
-          label: "Close";
         }
       }
     }
