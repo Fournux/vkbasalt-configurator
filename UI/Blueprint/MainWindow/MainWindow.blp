@@ -11,9 +11,27 @@ Gtk.ApplicationWindow mainWindow {
     styles ["toolbar", "flat"]
     
     [start]
-    Adw.SplitButton splitButton {
+      Box {
+        spacing: 5;
+        MenuButton openButton {
           label: "Open";
-    }
+          popover: Popover {
+            halign: start;
+            valign: end;
+            width-request: 300;
+            Box {
+              Label {
+                label: "coucsqdqqqqqqqqqqqqqqqqqqqqqou";
+              }
+            }
+          };
+        }
+        Button addButton {
+          Adw.ButtonContent {
+            icon-name:"list-add-symbolic";
+          }
+        }
+      }
 
     [end]
     Box {

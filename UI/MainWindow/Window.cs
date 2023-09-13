@@ -7,9 +7,9 @@ public class Window : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Adw.Clamp? main;
+    [Gtk.Connect] private readonly Gtk.Button? openButton;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
     [Gtk.Connect] private readonly Adw.ToastOverlay? toast;
-    [Gtk.Connect] private readonly Adw.SplitButton splitButton;
 #pragma warning restore 0649
 
     private readonly HomeView.View? homeView;
@@ -33,6 +33,7 @@ public class Window : Gtk.ApplicationWindow
             StateManager.Persist();
             return false;
         };
+
     }
 
     private void OpenConfigFile(string file)
