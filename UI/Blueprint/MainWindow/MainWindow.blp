@@ -11,8 +11,8 @@ Gtk.ApplicationWindow mainWindow {
     styles ["toolbar", "flat"]
     
     [start]
-    Box {
-
+    Adw.SplitButton splitButton {
+          label: "Open";
     }
 
     [end]
@@ -26,10 +26,12 @@ Gtk.ApplicationWindow mainWindow {
       }
     }
   }
-  ScrolledWindow {
-    Adw.Clamp clamp {
-      maximum-size: 600;
-
+  
+  Adw.ToastOverlay toast {
+    ScrolledWindow {
+      Adw.Clamp main {
+        maximum-size: 600;
+      }
     }
   }
 }

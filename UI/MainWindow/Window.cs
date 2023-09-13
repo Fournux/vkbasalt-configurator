@@ -6,8 +6,10 @@ namespace UI.MainWindow;
 public class Window : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
-    [Gtk.Connect] private readonly Adw.Clamp? clamp;
+    [Gtk.Connect] private readonly Adw.Clamp? main;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
+    [Gtk.Connect] private readonly Adw.ToastOverlay? toast;
+    [Gtk.Connect] private readonly Adw.SplitButton splitButton;
 #pragma warning restore 0649
 
     private readonly HomeView.View? homeView;
@@ -23,7 +25,7 @@ public class Window : Gtk.ApplicationWindow
 
         homeView = new HomeView.View(this);
         homeView.OnFileSelected += OpenConfigFile;
-        clamp!.SetChild(homeView);
+        main!.SetChild(homeView);
 
         saveButton!.OnClicked += (_, _) => SaveConfigFile();
         OnCloseRequest += (_, _) =>
@@ -38,26 +40,25 @@ public class Window : Gtk.ApplicationWindow
         configFile = new ConfigFile(file);
         configView!.LoadConfigFile(configFile);
         _ = StateManager.State.RecentFiles.Add(file);
-
-        clamp!.SetChild(configView);
+        main!.SetChild(configView);
         saveButton!.SetVisible(true);
     }
-
-    // private void CloseConfigFile()
-    // {
-    //     SaveConfigFile();
-    //     clamp!.SetChild(homeView);
-    //     saveButton!.SetVisible(false);
-    // }
 
     private void SaveConfigFile()
     {
         configView!.UpdateConfigFile(configFile!);
         configFile!.Save();
+        ShowToast("Config file has been saved.");
     }
 
     public Window(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")
     {
         Application = application;
+
+    }
+
+    public void ShowToast(string message)
+    {
+        toast!.AddToast(Adw.Toast.New(message));
     }
 }
