@@ -1,6 +1,6 @@
 using Core;
 
-namespace UI.MainWindow.ConfigView;
+namespace UI.Window.Main.Config;
 
 public class SmaaSettings : Adw.ExpanderRow
 {

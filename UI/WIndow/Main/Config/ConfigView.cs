@@ -1,9 +1,9 @@
 using Core;
 using UI.Components;
 
-namespace UI.MainWindow.ConfigView;
+namespace UI.Window.Main.Config;
 
-public class View : Gtk.Box
+public class ConfigView : Gtk.Box
 {
     private readonly KeySelectorRow keySelectorRow;
     private readonly SwitchRow switchRow;
@@ -12,7 +12,7 @@ public class View : Gtk.Box
     private readonly FxaaSettings fxaaSettings;
     private readonly SmaaSettings smaaSettings;
 
-    public View()
+    public ConfigView()
     {
         SetOrientation(Gtk.Orientation.Vertical);
         SetMarginTop(10);

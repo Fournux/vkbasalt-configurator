@@ -8,7 +8,7 @@ app.OnActivate += (application, args) =>
 {
     // Create a new MainWindow and show it.
     // The application is passed to the MainWindow so that it can be used
-    UI.MainWindow.Window mainWindow = new((Adw.Application)application);
+    UI.Window.Main.MainWindow mainWindow = new((Adw.Application)application);
 
     mainWindow.Show();
 };

@@ -1,5 +1,5 @@
 
-namespace UI.MainWindow.ConfigView;
+namespace UI.Window.Main.Config;
 
 public class FxaaSettings : Adw.ExpanderRow
 {

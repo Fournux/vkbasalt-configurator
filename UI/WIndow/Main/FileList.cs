@@ -1,17 +1,17 @@
-using Core.ApplicationState;
 using UI.Components;
 
-namespace UI.MainWindow;
+namespace UI.Window.Main;
 
 public class FileList : Gtk.ListBox
 {
-    public delegate void FileCallback(string file);
-    public event FileCallback? OnFileSelected;
-    public event FileCallback? OnFileDelete;
+    public delegate void FileHandler(string file);
+    public event FileHandler? OnFileSelected;
+    public event FileHandler? OnFileDelete;
 
     public FileList(ICollection<string> files)
     {
         SetActivateOnSingleClick(true);
+        SetHexpand(true);
         AddCssClass("boxed-list");
 
         OnRowActivated += (sender, args) =>
@@ -28,6 +28,15 @@ public class FileList : Gtk.ListBox
         for (Gtk.Widget? child; (child = GetLastChild()) != null;)
         {
             Remove(child);
+        }
+
+        if (files.Count == 0)
+        {
+            SetVisible(false);
+        }
+        else
+        {
+            SetVisible(true);
         }
 
         foreach (string file in files)

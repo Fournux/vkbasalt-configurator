@@ -11,15 +11,18 @@ public class ConfigFile
     {
         Path = path;
         raw = new Dictionary<ConfigKey, string>();
-        foreach (string line in File.ReadLines(Path))
+        if (File.Exists(Path))
         {
-            if (!line.StartsWith('#') && line.Contains('='))
+            foreach (string line in File.ReadLines(Path))
             {
-                string[] data = line.Split('=');
-                ConfigKey key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
-                if (!raw.ContainsKey(key))
+                if (!line.StartsWith('#') && line.Contains('='))
                 {
-                    raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
+                    string[] data = line.Split('=');
+                    ConfigKey key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
+                    if (!raw.ContainsKey(key))
+                    {
+                        raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
+                    }
                 }
             }
         }
