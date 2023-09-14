@@ -5,13 +5,21 @@ namespace UI.MainWindow;
 
 public class FileList : Gtk.ListBox
 {
-    public delegate void FileSelectedCallback(string file);
-    public event FileSelectedCallback? OnFileSelected;
+    public delegate void FileCallback(string file);
+    public event FileCallback? OnFileSelected;
+    public event FileCallback? OnFileDelete;
 
     public FileList(ICollection<string> files)
     {
         SetActivateOnSingleClick(true);
         AddCssClass("boxed-list");
+
+        OnRowActivated += (sender, args) =>
+        {
+            DeleteRow row = (DeleteRow)args.Row;
+            OnFileSelected?.Invoke(row.GetTitle());
+        };
+
         UpdateRecentFiles(files);
     }
 
@@ -22,16 +30,10 @@ public class FileList : Gtk.ListBox
             Remove(child);
         }
 
-        OnRowActivated += (sender, args) =>
-        {
-            DeleteRow row = (DeleteRow)args.Row;
-            OnFileSelected?.Invoke(row.GetTitle());
-        };
-
         foreach (string file in files)
         {
             DeleteRow row = new(file);
-            row.OnDelete += () => StateManager.State.RecentFiles.Remove(file);
+            row.OnDelete += () => OnFileDelete?.Invoke(file);
             row.SetActivatable(true);
             Prepend(row);
         }
