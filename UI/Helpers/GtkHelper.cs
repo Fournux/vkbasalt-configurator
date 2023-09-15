@@ -1,4 +1,4 @@
-namespace UI.Helper;
+namespace UI.Helpers;
 
 public static class GtkHelper
 {
@@ -26,7 +26,7 @@ public static class GtkHelper
         {
             return await dialog.SelectFolderAsync(parent);
         }
-        catch (GLib.GException)
+        catch (GLib.GException) // Cancel button clicked
         {
             return null;
         }

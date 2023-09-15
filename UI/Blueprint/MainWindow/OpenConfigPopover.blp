@@ -3,14 +3,14 @@ using Gtk 4.0;
 Popover openConfigPopover {
     halign: start;
     valign: end;
-    width-request: 180;
+    width-request: 400;
     Box content {
         orientation: vertical;
-        Label noFilesLabel {
-            visible: false;
-            margin-top: 10;
-            margin-bottom: 10;
-            label: "No recent files";
+        Box {
+            halign: center;
+            Button {
+                label: "Existing config file";
+            }
         }
     }
 }

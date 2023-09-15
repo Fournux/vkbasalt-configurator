@@ -1,6 +1,6 @@
 using Core;
 using Core.ApplicationState;
-using UI.Helper;
+using UI.Helpers;
 using UI.Window.Main.Config;
 using UI.Window.Main.Home;
 
@@ -16,8 +16,10 @@ public class MainWindow : Gtk.ApplicationWindow
     [Gtk.Connect] private readonly Adw.ToastOverlay? toast;
 #pragma warning restore 0649
 
-    private readonly HomeView? homeView;
-    private readonly ConfigView? configView;
+    private readonly HomeView homeView;
+    private readonly ConfigView configView;
+    private readonly OpenConfigPopover openConfigPopover;
+
 
     private ConfigFile? configFile;
 
@@ -26,8 +28,8 @@ public class MainWindow : Gtk.ApplicationWindow
         builder.Connect(this);
 
         configView = new ConfigView();
-
         homeView = new HomeView(this);
+
         homeView.OnFileSelected += OpenConfigFile;
         homeView.OnCreateConfigFile += async (_, _) => await CreateConfigFile();
         homeView.OnSelectConfigFile += async (_, _) => await SelectConfigFile();
@@ -42,7 +44,9 @@ public class MainWindow : Gtk.ApplicationWindow
             return false;
         };
 
-        openMenuButton!.SetPopover(new OpenConfigPopover());
+        openConfigPopover = new OpenConfigPopover();
+        openConfigPopover.OnFileSelected += file => { OpenConfigFile(file); openConfigPopover.Hide(); };
+        openMenuButton!.SetPopover(openConfigPopover);
     }
 
     private async Task CreateConfigFile()
@@ -68,6 +72,7 @@ public class MainWindow : Gtk.ApplicationWindow
         configFile = new ConfigFile(file);
         configView!.LoadConfigFile(configFile);
         _ = StateManager.State.RecentFiles.Add(file);
+        SetTitle(file);
         main!.SetChild(configView);
         saveButton!.SetVisible(true);
     }

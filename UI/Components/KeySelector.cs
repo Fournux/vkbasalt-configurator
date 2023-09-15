@@ -20,7 +20,6 @@ public class KeySelector : Gtk.Button
             if (Listening)
             {
                 Key = Gdk.Functions.KeyvalName(args.Keyval)!;
-
                 Listening = false;
                 return false;
             }
@@ -28,7 +27,6 @@ public class KeySelector : Gtk.Button
             {
                 return true;
             }
-
         };
 
         AddController(keyController);

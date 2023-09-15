@@ -24,21 +24,35 @@ Gtk.ApplicationWindow mainWindow {
       }
 
     [end]
-    Box {
-      Button saveButton {
-        visible: false;
+      MenuButton mainMenuButton {
         Adw.ButtonContent {
-          icon-name:"document-save-symbolic";
-          label: "Save";
+          icon-name:"open-menu-symbolic";
+        }
+      }
+  }
+  
+  Box {
+    orientation: vertical;
+    Adw.ToastOverlay toast {
+      vexpand: true;
+      ScrolledWindow {
+        Adw.Clamp main {
+          maximum-size: 600;
         }
       }
     }
-  }
-  
-  Adw.ToastOverlay toast {
-    ScrolledWindow {
-      Adw.Clamp main {
-        maximum-size: 600;
+    Box {
+      margin-top:10;
+      styles ["view"]
+      Box {
+        hexpand: true;
+      }
+      Button saveButton {
+        margin-end: 10;
+        margin-bottom: 10;
+        margin-top: 10;
+        visible: false;
+        label: "Save";
       }
     }
   }

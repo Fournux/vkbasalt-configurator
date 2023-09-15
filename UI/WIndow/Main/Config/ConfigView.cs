@@ -1,9 +1,10 @@
 using Core;
 using UI.Components;
+using UI.Extensions;
 
 namespace UI.Window.Main.Config;
 
-public class ConfigView : Gtk.Box
+public class ConfigView : Gtk.ListBox
 {
     private readonly KeySelectorRow keySelectorRow;
     private readonly SwitchRow switchRow;
@@ -14,9 +15,11 @@ public class ConfigView : Gtk.Box
 
     public ConfigView()
     {
-        SetOrientation(Gtk.Orientation.Vertical);
         SetMarginTop(10);
-        SetSpacing(10);
+        SetHexpand(true);
+        SetSelectionMode(Gtk.SelectionMode.None);
+        SetValign(Gtk.Align.Start);
+        AddCssClass("boxed-list");
 
         keySelectorRow = new KeySelectorRow("Toggle key");
         switchRow = new SwitchRow("Enable on start");
@@ -25,12 +28,8 @@ public class ConfigView : Gtk.Box
         fxaaSettings = new FxaaSettings();
         smaaSettings = new SmaaSettings();
 
-        Append(switchRow);
-        Append(keySelectorRow);
-        Append(casSettings);
-        Append(dlsSettings);
-        Append(fxaaSettings);
-        Append(smaaSettings);
+
+        this.Append(switchRow, keySelectorRow, casSettings, dlsSettings, fxaaSettings, smaaSettings);
     }
 
     public void LoadConfigFile(ConfigFile configFile)
