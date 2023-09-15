@@ -12,6 +12,7 @@ public class FileList : Gtk.ListBox
     {
         SetActivateOnSingleClick(true);
         SetHexpand(true);
+        SetSelectionMode(Gtk.SelectionMode.None);
         AddCssClass("boxed-list");
 
         OnRowActivated += (sender, args) =>
