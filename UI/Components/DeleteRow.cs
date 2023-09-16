@@ -8,7 +8,6 @@ public class DeleteRow : Adw.ActionRow
     public delegate void OnDeleteHandler();
     public event OnDeleteHandler? OnDelete;
 
-
     private DeleteRow(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
