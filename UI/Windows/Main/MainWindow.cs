@@ -1,18 +1,22 @@
 using Core;
 using Core.ApplicationState;
 using UI.Helpers;
-using UI.Window.Main.Config;
-using UI.Window.Main.Home;
+using UI.Windows.About;
+using UI.Windows.Main.Config;
+using UI.Windows.Main.Home;
 
-namespace UI.Window.Main;
+namespace UI.Windows.Main;
 
 public class MainWindow : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Adw.Clamp? main;
     [Gtk.Connect] private readonly Gtk.MenuButton? openMenuButton;
+    [Gtk.Connect] private readonly Gtk.Box? topActions;
     [Gtk.Connect] private readonly Gtk.Button? addButton;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
+    [Gtk.Connect] private readonly Gtk.Button? aboutButton;
+
     [Gtk.Connect] private readonly Adw.ToastOverlay? toast;
 #pragma warning restore 0649
 
@@ -46,7 +50,10 @@ public class MainWindow : Gtk.ApplicationWindow
 
         openConfigPopover = new OpenConfigPopover();
         openConfigPopover.OnFileSelected += file => { OpenConfigFile(file); openConfigPopover.Hide(); };
+        openConfigPopover.OnSelectConfigFile += async (sender, args) => { openConfigPopover.Hide(); await SelectConfigFile(); };
         openMenuButton!.SetPopover(openConfigPopover);
+
+        aboutButton!.OnClicked += (sender, args) => AboutWindow.Show(this);
     }
 
     private async Task CreateConfigFile()
@@ -74,6 +81,7 @@ public class MainWindow : Gtk.ApplicationWindow
         _ = StateManager.State.RecentFiles.Add(file);
         SetTitle(file);
         main!.SetChild(configView);
+        topActions!.SetVisible(true);
         saveButton!.SetVisible(true);
     }
 

@@ -2,7 +2,7 @@ using Core;
 using UI.Components;
 using UI.Extensions;
 
-namespace UI.Window.Main.Config;
+namespace UI.Windows.Main.Config;
 
 public class ConfigView : Gtk.ListBox
 {

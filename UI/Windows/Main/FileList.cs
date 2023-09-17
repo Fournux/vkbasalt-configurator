@@ -1,6 +1,6 @@
 using UI.Components;
 
-namespace UI.Window.Main;
+namespace UI.Windows.Main;
 
 public class FileList : Gtk.ListBox
 {

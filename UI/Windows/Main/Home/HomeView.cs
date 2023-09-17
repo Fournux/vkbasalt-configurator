@@ -1,8 +1,8 @@
 using Core.ApplicationState;
 using Core.Collections;
-using static UI.Window.Main.FileList;
+using static UI.Windows.Main.FileList;
 
-namespace UI.Window.Main.Home;
+namespace UI.Windows.Main.Home;
 
 public class HomeView : Gtk.Box
 {

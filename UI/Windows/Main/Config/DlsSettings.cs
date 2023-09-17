@@ -1,4 +1,4 @@
-namespace UI.Window.Main.Config;
+namespace UI.Windows.Main.Config;
 
 public class DlsSettings : Adw.ExpanderRow
 {

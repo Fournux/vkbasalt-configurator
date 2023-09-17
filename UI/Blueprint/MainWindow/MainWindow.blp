@@ -11,8 +11,9 @@ Gtk.ApplicationWindow mainWindow {
     styles ["toolbar", "flat"]
     
     [start]
-      Box {
+      Box topActions {
         spacing: 5;
+        visible: false;
         MenuButton openMenuButton {
           label: "Open";
         }
@@ -24,11 +25,11 @@ Gtk.ApplicationWindow mainWindow {
       }
 
     [end]
-      MenuButton mainMenuButton {
-        Adw.ButtonContent {
-          icon-name:"open-menu-symbolic";
-        }
+    Button aboutButton {
+      Adw.ButtonContent {
+        icon-name:"open-menu-symbolic";
       }
+    }
   }
   
   Box {
