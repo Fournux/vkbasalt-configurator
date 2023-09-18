@@ -8,12 +8,12 @@ public static class ApplicationIdentity
     /// see https://developer.gnome.org/documentation/tutorials/application-id.html.
     /// This should be automatically replaced when the application is created.
     /// </summary>
-    public const string APP_ID = "org.fournux.vkbasalt.configurator";
+    public const string APP_ID = "lu.fournux.vkbasalt.configurator";
 
     /// <summary>
     /// A shorter name for the application.
     /// This is case sensitive and should not contain spaces.
-    /// This should be automatically replaced when the application is created.
+    /// This should be automatically replaced whe   n the application is created.
     /// </summary>
     public const string APP_SHORT_NAME = "vkbasalt_configurator";
 

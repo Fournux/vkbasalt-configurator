@@ -28,8 +28,8 @@ The file structure of this project is as follows:
 - `ui/`: Contains the UI files for the project. Put any classes that show UI here.
   - `MainWindow.cs`: The main window for the application. This is shown when the application starts.
 - `data/`: Contains the data files for the project. These files are copied to the flatpak build directory. Put any files used in the flatpak manifest here.
-  - `org.fournux.vkbasalt.configurator.desktop`: The desktop file for the flatpak. This is used to define the application id, name, icon, etc. and is used to create the application menu entry.
-  - `org.fournux.vkbasalt.configurator.yml`: The flatpak manifest. This is used to define the flatpak build. You should set permissions, dependencies, etc. here.
+  - `lu.fournux.vkbasalt.configurator.desktop`: The desktop file for the flatpak. This is used to define the application id, name, icon, etc. and is used to create the application menu entry.
+  - `lu.fournux.vkbasalt.configurator.yml`: The flatpak manifest. This is used to define the flatpak build. You should set permissions, dependencies, etc. here.
   - `run.sh`: The script that runs the application. This is used to set the environment variables for the application.
 - `Program.cs`: The entry point for the project. This is where the application starts.
 - `Constants.cs`: Contains the constants for the project. This is where things like the application id are defined.

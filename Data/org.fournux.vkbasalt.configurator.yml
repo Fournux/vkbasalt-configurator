@@ -1,4 +1,4 @@
-app-id: org.fournux.vkbasalt.configurator
+app-id: lu.fournux.vkbasalt.configurator
 runtime: org.gnome.Platform
 runtime-version: "43"
 sdk: org.gnome.Sdk
@@ -15,11 +15,11 @@ modules:
     build-commands:
       - "install -D vkbasalt_configurator /app/bin/vkbasalt_configurator"
       - "install -D run.sh /app/bin/run.sh"
-      - "install -D org.fournux.vkbasalt.configurator.Desktop /app/share/applications/org.fournux.vkbasalt.configurator.desktop"
+      - "install -D lu.fournux.vkbasalt.configurator.Desktop /app/share/applications/lu.fournux.vkbasalt.configurator.desktop"
     sources:
       - type: file
         path: vkbasalt_configurator
       - type: file
         path: run.sh
       - type: file
-        path: org.fournux.vkbasalt.configurator.Desktop
+        path: lu.fournux.vkbasalt.configurator.Desktop

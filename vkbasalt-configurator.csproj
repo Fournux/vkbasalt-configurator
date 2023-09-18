@@ -40,5 +40,8 @@
     <EmbeddedResource Include="build\**\*.ui">
       <LogicalName>%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\Icons\*.svg">
+      <LogicalName>share/icons/hicolor/scalable/apps/%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

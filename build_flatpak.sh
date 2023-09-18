@@ -24,4 +24,4 @@ cp -r data/* flatpak_build/ # Copy the data directory to the build directory
 
 # Build the flatpak
 cd flatpak_build/
-flatpak-builder --repo=repo --force-clean build-dir org.fournux.vkbasalt.configurator.yml --install --user
+flatpak-builder --repo=repo --force-clean build-dir lu.fournux.vkbasalt.configurator.yml --install --user
