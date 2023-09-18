@@ -1,7 +1,6 @@
 # **DISPLAY_NAME**
 
 ![Alt text](./Data/Icons/lu.fournux.vkbasalt.configurator.svg)
-<img src="./Data/Icons/lu.fournux.vkbasalt.configurator.svg">
 
 ## Build
 
