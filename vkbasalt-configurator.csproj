@@ -5,8 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PublishAot>true</PublishAot>
+    <PublishRelease>true</PublishRelease>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-Recommended</AnalysisLevel>
+    <RunWorkingDirectory>bin/Debug/net7.0/linux-x64</RunWorkingDirectory> 
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,8 +42,13 @@
     <EmbeddedResource Include="build\**\*.ui">
       <LogicalName>%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\Icons\*.svg">
-      <LogicalName>share/icons/hicolor/scalable/apps/%(Filename)%(Extension)</LogicalName>
-    </EmbeddedResource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data/icons/hicolor/*/*/*">
+      <Link>icons/hicolor/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
 </Project>

@@ -95,6 +95,13 @@ public class MainWindow : Gtk.ApplicationWindow
     public MainWindow(Adw.Application application) : this(new Gtk.Builder("MainWindow.ui"), "mainWindow")
     {
         Application = application;
+
+
+        Gtk.IconTheme test = Gtk.IconTheme.GetForDisplay(Gdk.Display.GetDefault()!);
+        test.AddSearchPath("icons");
+        Console.WriteLine(test.HasIcon("lu.fournux.vkbasalt.configurator"));
+
+        Console.WriteLine("coucou");
     }
 
     public void ShowToast(string message)
