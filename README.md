@@ -1,6 +1,7 @@
 # **DISPLAY_NAME**
 
-This readme was generated automatically by the template generator.
+![Alt text](./Data/Icons/lu.fournux.vkbasalt.configurator.svg)
+<img src="./Data/Icons/lu.fournux.vkbasalt.configurator.svg">
 
 ## Build
 
