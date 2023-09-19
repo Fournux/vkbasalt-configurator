@@ -1,17 +1,17 @@
-using MessagePack;
+using System.Text.Json;
 
 namespace Core.ApplicationState;
 
 public static class StateManager
 {
-    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APP_ID + Path.DirectorySeparatorChar + "state.msgpack";
+    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + APP_ID + Path.DirectorySeparatorChar + "state.json";
 
     private static State? instance;
 
     private static void Persist(State settings)
     {
-        byte[] bytes = MessagePackSerializer.Serialize(settings);
         File.Delete(Location);
+        byte[] bytes = JsonSerializer.SerializeToUtf8Bytes(settings, SourceGenerationContext.Default.State);
         File.WriteAllBytes(Location, bytes);
     }
 
@@ -30,7 +30,7 @@ public static class StateManager
                 else
                 {
                     byte[] bytes = File.ReadAllBytes(Location);
-                    instance = MessagePackSerializer.Deserialize<State>(bytes);
+                    instance = JsonSerializer.Deserialize(bytes, SourceGenerationContext.Default.State)!;
                 }
             }
 

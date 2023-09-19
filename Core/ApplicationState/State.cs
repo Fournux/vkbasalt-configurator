@@ -1,11 +1,15 @@
+using System.Text.Json.Serialization;
 using Core.Collections;
-using MessagePack;
 
 namespace Core.ApplicationState;
 
-[MessagePackObject]
 public class State
 {
-    [Key(0)]
     public ObservableHashSet<string> RecentFiles { get; set; } = new();
+
 }
+
+[JsonSourceGenerationOptions(WriteIndented = true)]
+[JsonSerializable(typeof(State))]
+internal partial class SourceGenerationContext : JsonSerializerContext
+{ }
