@@ -21,7 +21,7 @@ public class ConfigFile
                     ConfigKey key = Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true);
                     if (!raw.ContainsKey(key))
                     {
-                        raw.Add(Enum.Parse<ConfigKey>(value: data[0].Trim(), ignoreCase: true), data[1].Trim());
+                        raw.Add(key, data[1].Trim());
                     }
                 }
             }
