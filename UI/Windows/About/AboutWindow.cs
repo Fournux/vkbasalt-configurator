@@ -6,9 +6,9 @@ public static class AboutWindow
     {
         Adw.AboutWindow dialog = Adw.AboutWindow.New();
         dialog.SetTransientFor(parent);
-        dialog.SetIconName("lu.fournux.vkbasalt.configurator");
+        dialog.SetIconName(APP_ID);
         dialog.SetApplicationName("vkBasalt Configurator");
-        dialog.SetApplicationIcon("lu.fournux.vkbasalt.configurator");
+        dialog.SetApplicationIcon(APP_ID);
         dialog.SetVersion("0.1");
         // dialog.SetDebugInfo("");
         // dialog.SetComments("");

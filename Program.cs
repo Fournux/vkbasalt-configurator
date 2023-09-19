@@ -6,10 +6,10 @@ Adw.Application app = Adw.Application.New(APP_ID, Gio.ApplicationFlags.DefaultFl
 
 app.OnActivate += (application, args) =>
 {
-    // Create a new MainWindow and show it.
-    // The application is passed to the MainWindow so that it can be used
-    UI.Windows.Main.MainWindow mainWindow = new((Adw.Application)application);
+    Gtk.IconTheme.GetForDisplay(Gdk.Display.GetDefault()!).AddSearchPath("icons");
 
+    UI.Windows.Main.MainWindow mainWindow = new((Adw.Application)application);
+    mainWindow.SetIconName(APP_ID);
     mainWindow.Show();
 };
 
