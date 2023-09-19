@@ -8,8 +8,11 @@
   <img src="./Data/screenshots/app.png">
 </div>
 
+## Installation
 
-## Build
+TODO
+
+## Building
 
 To run this project, run the following commands:
 
@@ -17,13 +20,15 @@ To run this project, run the following commands:
 dotnet run
 ```
 
-## Project Structure
-
 
 ## Technologies used
 
-<div align="">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/456px-Microsoft_.NET_logo.svg.png" width="128">
-&nbsp;
-<img src="https://docs.gtk.org/gtk4/gtk-logo.svg" width="128">
+<div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/456px-Microsoft_.NET_logo.svg.png" width="128">
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/gircore/gir.core/develop/img/logo.svg" width="128">
+  
 </div>
+
+- .NET 7
+- GTK 4 (bindings from [gir.core](https://github.com/gircore/gir.core))
