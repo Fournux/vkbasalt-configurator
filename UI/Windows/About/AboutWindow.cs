@@ -9,21 +9,14 @@ public static class AboutWindow
         dialog.SetIconName(APP_ID);
         dialog.SetApplicationName("vkBasalt Configurator");
         dialog.SetApplicationIcon(APP_ID);
-        dialog.SetVersion("0.1");
-        // dialog.SetDebugInfo("");
-        // dialog.SetComments("");
+        dialog.SetVersion(APP_VERSION);
         dialog.SetDeveloperName("Fournux");
         dialog.SetLicenseType(Gtk.License.MitX11);
-        dialog.SetCopyright("© Fournux 2023");
+        dialog.SetCopyright("© Fournux " + DateTime.Now.Year);
         dialog.SetWebsite("https://fournux.lu/");
-        // dialog.SetIssueUrl("");
-        // dialog.SetSupportUrl("");
-        dialog.AddLink("GitHub Repo", "");
+        dialog.SetIssueUrl("https://github.com/Fournux/vkbasalt-configurator/issues");
+        dialog.AddLink("GitHub Repo", "https://github.com/Fournux/vkbasalt-configurator");
         dialog.SetDevelopers(new string[] { "Fournux" });
-        // dialog.SetDesigners(new string[] { "" });
-        // dialog.SetArtists(new string[] { "" });
-        // dialog.SetTranslatorCredits("");
-        // dialog.SetReleaseNotes("");
         dialog.Present();
     }
 }

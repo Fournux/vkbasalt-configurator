@@ -19,7 +19,7 @@ public static class StateManager
     {
         get
         {
-            if (instance == null)
+            if (instance is null)
             {
                 _ = Directory.CreateDirectory(Path.GetDirectoryName(Location)!);
                 if (!File.Exists(Location))
@@ -40,7 +40,7 @@ public static class StateManager
 
     public static void Persist()
     {
-        if (instance != null)
+        if (instance is not null)
         {
             Persist(instance);
         }

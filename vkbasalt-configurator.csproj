@@ -2,16 +2,18 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <PublishAot>true</PublishAot>
     <PublishRelease>true</PublishRelease>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-Recommended</AnalysisLevel>
     <RunWorkingDirectory>bin/Debug/net7.0/linux-x64</RunWorkingDirectory> 
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GetText.NET" Version="1.9.14" />
     <PackageReference Include="GirCore.Adw-1" Version="0.5.0-preview.1" />
     <PackageReference Include="GirCore.Gdk-4.0" Version="0.5.0-preview.1" />
     <PackageReference Include="GirCore.Gio-2.0" Version="0.5.0-preview.1" />
@@ -19,7 +21,7 @@
 
   <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
     <!-- Build Blueprints -->
-    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/UI/Blueprint $(MSBuildProjectDirectory)/UI/Blueprint/*/*.blp $(MSBuildProjectDirectory)/UI/Blueprint/*/*/*.blp" />
+    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/generated/ $(MSBuildProjectDirectory)/UI/Blueprint $(MSBuildProjectDirectory)/UI/Blueprint/*/*.blp $(MSBuildProjectDirectory)/UI/Blueprint/*/*/*.blp" />
   </Target>
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">
@@ -28,13 +30,13 @@
     <!-- Remove bin folder -->
     <RemoveDir Directories="$(BaseOutputPath)" />
     <!-- Remove compiled blueprints -->
-    <RemoveDir Directories="$(MSBuildProjectDirectory)/build" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)/generated" />
   </Target>
 
   <!-- Add the blueprints as a resource --> 
   <ItemGroup>
     <None Remove="build\*.ui" />
-    <EmbeddedResource Include="build\**\*.ui">
+    <EmbeddedResource Include="generated\**\*.ui">
       <LogicalName>%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>

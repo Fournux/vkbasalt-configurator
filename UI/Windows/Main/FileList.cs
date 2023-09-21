@@ -26,7 +26,7 @@ public class FileList : Gtk.ListBox
 
     public void UpdateRecentFiles(ICollection<string> files)
     {
-        for (Gtk.Widget? child; (child = GetLastChild()) != null;)
+        for (Gtk.Widget? child; (child = GetLastChild()) is not null;)
         {
             Remove(child);
         }

@@ -10,12 +10,10 @@ public class OpenConfigPopover : Gtk.Popover
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Gtk.Box? content;
     [Gtk.Connect] private readonly Gtk.Box? noRecentFilesIndicator;
-    [Gtk.Connect] private readonly Gtk.Button? openExistingButton;
 #pragma warning restore 0649
 
     private readonly FileList fileList;
 
-    public event EventHandler? OnSelectConfigFile;
     public event FileHandler? OnFileSelected;
 
     private OpenConfigPopover(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
@@ -35,7 +33,6 @@ public class OpenConfigPopover : Gtk.Popover
         fileList.OnFileSelected += (file) => OnFileSelected?.Invoke(file);
         fileList.OnFileDelete += (file) => files.Remove(file);
         noRecentFilesIndicator!.SetVisible(files.Count == 0);
-        openExistingButton!.OnClicked += (sender, args) => OnSelectConfigFile?.Invoke(sender, args);
         content!.Append(fileList);
     }
 

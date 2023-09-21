@@ -11,20 +11,17 @@ public class MainWindow : Gtk.ApplicationWindow
 {
 #pragma warning disable 0649
     [Gtk.Connect] private readonly Adw.Clamp? main;
-    [Gtk.Connect] private readonly Gtk.MenuButton? openMenuButton;
+    [Gtk.Connect] private readonly Adw.SplitButton? openMenuButton;
     [Gtk.Connect] private readonly Gtk.Box? topActions;
     [Gtk.Connect] private readonly Gtk.Button? addButton;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
     [Gtk.Connect] private readonly Gtk.Button? aboutButton;
-
-    [Gtk.Connect] private readonly Adw.ToastOverlay? toast;
+    [Gtk.Connect] private readonly Adw.ToastOverlay? toastOverlay;
 #pragma warning restore 0649
 
     private readonly HomeView homeView;
     private readonly ConfigView configView;
     private readonly OpenConfigPopover openConfigPopover;
-
-
     private ConfigFile? configFile;
 
     private MainWindow(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
@@ -50,7 +47,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
         openConfigPopover = new OpenConfigPopover();
         openConfigPopover.OnFileSelected += file => { OpenConfigFile(file); openConfigPopover.Hide(); };
-        openConfigPopover.OnSelectConfigFile += async (sender, args) => { openConfigPopover.Hide(); await SelectConfigFile(); };
+        openMenuButton!.OnClicked += async (sender, args) => await SelectConfigFile();
         openMenuButton!.SetPopover(openConfigPopover);
 
         aboutButton!.OnClicked += (sender, args) => AboutWindow.Show(this);
@@ -59,7 +56,7 @@ public class MainWindow : Gtk.ApplicationWindow
     private async Task CreateConfigFile()
     {
         Gio.File? file = await GtkHelper.SelectFolder(this, "Select a folder", "Open");
-        if (file != null)
+        if (file is not null)
         {
             OpenConfigFile(file.GetPath()! + Path.DirectorySeparatorChar + "vkbasalt.conf");
         }
@@ -67,8 +64,8 @@ public class MainWindow : Gtk.ApplicationWindow
 
     private async Task SelectConfigFile()
     {
-        Gio.File? file = await GtkHelper.Select(this, "Select a config file", "Open");
-        if (file != null)
+        Gio.File? file = await GtkHelper.Select(this, "Select a config file", "Open", "*.conf");
+        if (file is not null)
         {
             OpenConfigFile(file.GetPath()!);
         }
@@ -99,6 +96,6 @@ public class MainWindow : Gtk.ApplicationWindow
 
     public void ShowToast(string message)
     {
-        toast!.AddToast(Adw.Toast.New(message));
+        toastOverlay!.AddToast(Adw.Toast.New(message));
     }
 }

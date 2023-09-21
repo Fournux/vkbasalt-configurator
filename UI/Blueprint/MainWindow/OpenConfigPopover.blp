@@ -3,25 +3,18 @@ using Adw 1;
 
 Popover openConfigPopover {
     halign: start;
-    valign: end;
     width-request: 400;
+    has-arrow: false;
     Box content {
         orientation: vertical;
-        Box {
-            halign: center;
-            Button openExistingButton {
-                label: "Existing config file";
-                margin-bottom: 20;
-                margin-top: 10;
-            }
-        }
+        margin-top: 10;
         Box noRecentFilesIndicator {
             halign: center;
-            margin-bottom: 20;
             visible: false;
             Box {
                 orientation: vertical;
-                spacing: 15;
+                margin-bottom: 10;
+                spacing: 10;
                 Image {
                     styles ["icon"]
                     halign: fill;

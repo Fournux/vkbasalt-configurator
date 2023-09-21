@@ -2,11 +2,19 @@ namespace UI.Helpers;
 
 public static class GtkHelper
 {
-    public static async Task<Gio.File?> Select(Gtk.Window parent, string title, string acceptLabel = "Accept")
+    public static async Task<Gio.File?> Select(Gtk.Window parent, string title, string acceptLabel = "Accept", string? pattern = null)
     {
         Gtk.FileDialog dialog = Gtk.FileDialog.New();
         dialog.SetTitle(title);
         dialog.SetAcceptLabel(acceptLabel);
+
+        if (pattern is not null)
+        {
+            Gtk.FileFilter filter = Gtk.FileFilter.New();
+            filter.AddPattern(pattern);
+            dialog.SetDefaultFilter(filter);
+        }
+
         try
         {
             return await dialog.OpenAsync(parent);

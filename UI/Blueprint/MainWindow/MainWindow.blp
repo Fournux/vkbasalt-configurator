@@ -14,7 +14,7 @@ Gtk.ApplicationWindow mainWindow {
       Box topActions {
         spacing: 5;
         visible: false;
-        MenuButton openMenuButton {
+        Adw.SplitButton openMenuButton {
           label: "Open";
         }
         Button addButton {
@@ -34,7 +34,7 @@ Gtk.ApplicationWindow mainWindow {
   
   Box {
     orientation: vertical;
-    Adw.ToastOverlay toast {
+    Adw.ToastOverlay toastOverlay {
       vexpand: true;
       ScrolledWindow {
         Adw.Clamp main {
