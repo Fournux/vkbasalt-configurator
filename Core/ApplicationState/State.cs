@@ -11,5 +11,5 @@ public class State
 
 [JsonSourceGenerationOptions(WriteIndented = true)]
 [JsonSerializable(typeof(State))]
-internal partial class SourceGenerationContext : JsonSerializerContext
+internal sealed partial class SourceGenerationContext : JsonSerializerContext
 { }
