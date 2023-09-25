@@ -1,0 +1,8 @@
+{
+  "APP_ID": "lu.fournux.vkbasalt.configurator",
+  "APP_VERSION": "0.1",
+  "APP_SHORT_NAME": "vkbasalt_configurator",
+  "APP_DISPLAY_NAME": "vkbasalt-configurator",
+  "BLUEPRINT_FOLDER": "UI/Blueprint",
+  "PO_FOLDER": "Data/po"
+}

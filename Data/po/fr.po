@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-24 22:04+0200\n"
+"POT-Creation-Date: 2023-09-25 17:01+0200\n"
 "PO-Revision-Date: 2023-09-24 22:04+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,14 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: ../../../UI/Windows/Main/MainWindow.cs:59
+#: ../../../UI/Windows/Main/MainWindow.cs:68 MainWindow.blp:18
+msgid "Open"
+msgstr "Ouvrir"
+
+#: HomeView.blp:24
+msgid "Create a new config file"
+msgstr "Créer un nouveau fichier de config"
+
+#: MainWindow.blp:56
+msgid "Save"
+msgstr "Sauvegarder"
+
 #: HomeView.blp:11
 msgid "Please select a config file in your system or create a new one."
 msgstr ""
-
-#: MainWindow.blp:18
-msgid "Open"
-msgstr ""
-
-#: HomeView.blp:24
-msgid "Hello"
-msgstr ""
+"Veuillez sélectionner un fichier de configuration existant ou créez-en un "
+"nouveau."

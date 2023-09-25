@@ -1,6 +1,8 @@
 using Core.ApplicationState;
 using Core.Collections;
+using UI.Helpers;
 using static UI.Windows.Main.FileList;
+using static UI.Localization.CatalogManager;
 
 namespace UI.Windows.Main.Home;
 
@@ -32,7 +34,7 @@ public class HomeView : Gtk.Box
         recentFiles!.Append(fileList);
     }
 
-    public HomeView(Gtk.Window window) : this(new Gtk.Builder("HomeView.ui"), "homeView")
+    public HomeView(Gtk.Window window) : this(GtkHelper.FromLocalizedTemplate("HomeView.ui", GetString), "homeView")
     {
         this.window = window;
     }

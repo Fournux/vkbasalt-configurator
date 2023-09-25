@@ -1,7 +1,8 @@
-$REGEX = '_\("(.*)"\)'
 $PROJECT_NAME = 'vkbasalt-configurator'
 $BLUEPRINT_FOLDER = './UI/Blueprint'
 $POT_FILE = './Data/po/blueprint.pot'
+
+$REGEX = '_\("(.*)"\)' # Regex to detect _("localized strings")
 
 $hashTable = @{}
 
