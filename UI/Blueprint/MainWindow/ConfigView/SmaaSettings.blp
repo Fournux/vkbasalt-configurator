@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.ExpanderRow smaaSettings {
-  title: "SMAA (Enhanced Subpixel Morphological Antialiasing)";
+  title: _("SMAA (Enhanced Subpixel Morphological Antialiasing)");
 
   [action]
   Switch gtkSwitch {
@@ -10,7 +10,7 @@ Adw.ExpanderRow smaaSettings {
   }
 
   Adw.ActionRow {
-    title: "Edge detection shader";
+    title: _("Edge detection shader");
     hexpand: true;
 
     [suffix]
@@ -29,7 +29,7 @@ Adw.ExpanderRow smaaSettings {
   }
   
   Adw.ActionRow {
-    title: "Edge threshold";
+    title: _("Edge Threshold");
     hexpand: true;
 
     [suffix]
@@ -45,7 +45,7 @@ Adw.ExpanderRow smaaSettings {
   }
 
   Adw.ActionRow {
-    title: "Maximum search steps";
+    title: _("Maximum search steps");
     hexpand: true;
 
     [suffix]
@@ -60,7 +60,7 @@ Adw.ExpanderRow smaaSettings {
   }
   
     Adw.ActionRow {
-    title: "Maximum search diagonal steps";
+    title: _("Maximum search diagonal steps");
     hexpand: true;
 
     [suffix]
@@ -75,7 +75,7 @@ Adw.ExpanderRow smaaSettings {
   }
   
   Adw.ActionRow {
-    title: "Corner rounding";
+    title: _("Corner rounding");
     hexpand: true;
 
     [suffix]

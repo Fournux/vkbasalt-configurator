@@ -1,4 +1,6 @@
 using Core;
+using UI.Helpers;
+using static UI.Localization.CatalogManager;
 
 namespace UI.Windows.Main.Config;
 
@@ -63,7 +65,7 @@ public class SmaaSettings : Adw.ExpanderRow
         _ = gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
-    public SmaaSettings() : this(new Gtk.Builder("SmaaSettings.ui"), "smaaSettings")
+    public SmaaSettings() : this(GtkHelper.FromLocalizedTemplate("SmaaSettings.ui", GetString), "smaaSettings")
     {
         EdgeDetection = SmaaEdgeDetection.Color;
     }

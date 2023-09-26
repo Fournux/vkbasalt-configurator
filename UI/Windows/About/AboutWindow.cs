@@ -4,12 +4,14 @@ public static class AboutWindow
 {
     public static void Show(Gtk.Window parent)
     {
+        Values values = Values.Instance();
+
         Adw.AboutWindow dialog = Adw.AboutWindow.New();
         dialog.SetTransientFor(parent);
-        dialog.SetIconName(APP_ID);
+        dialog.SetIconName(values.APP_ID);
         dialog.SetApplicationName("vkBasalt Configurator");
-        dialog.SetApplicationIcon(APP_ID);
-        dialog.SetVersion(APP_VERSION);
+        dialog.SetApplicationIcon(values.APP_ID!);
+        dialog.SetVersion(values.APP_VERSION!);
         dialog.SetDeveloperName("Fournux");
         dialog.SetLicenseType(Gtk.License.MitX11);
         dialog.SetCopyright("© Fournux " + DateTime.Now.Year);

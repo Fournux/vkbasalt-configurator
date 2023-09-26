@@ -1,4 +1,7 @@
 
+using UI.Helpers;
+using static UI.Localization.CatalogManager;
+
 namespace UI.Windows.Main.Config;
 
 public class FxaaSettings : Adw.ExpanderRow
@@ -42,7 +45,7 @@ public class FxaaSettings : Adw.ExpanderRow
         _ = gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
-    public FxaaSettings() : this(new Gtk.Builder("FxaaSettings.ui"), "fxaaSettings")
+    public FxaaSettings() : this(GtkHelper.FromLocalizedTemplate("FxaaSettings.ui", GetString), "fxaaSettings")
     {
     }
 }

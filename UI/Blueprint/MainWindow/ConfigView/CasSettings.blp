@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.ExpanderRow casSettings {
-  title: "CAS (Contrast Adaptive Sharpening)";
+  title: _("CAS (Contrast Adaptive Sharpening)");
 
   [action]
   Switch gtkSwitch {
@@ -10,7 +10,7 @@ Adw.ExpanderRow casSettings {
   }
 
   Adw.ActionRow {
-    title: "Sharpness";
+    title: _("Sharpness");
     hexpand: true;
 
     [suffix]

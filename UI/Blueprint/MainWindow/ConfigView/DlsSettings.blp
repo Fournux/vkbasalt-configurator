@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.ExpanderRow dlsSettings {
-  title: "DLS (Denoised Luma Sharpening)";
+  title: _("DLS (Denoised Luma Sharpening)");
 
   [action]
   Switch gtkSwitch {
@@ -10,7 +10,7 @@ Adw.ExpanderRow dlsSettings {
   }
 
   Adw.ActionRow {
-    title: "Sharpness";
+    title: _("Sharpness");
     hexpand: true;
 
     [suffix]
@@ -25,7 +25,7 @@ Adw.ExpanderRow dlsSettings {
     }
   }
     Adw.ActionRow {
-    title: "Denoise";
+    title: _("Denoise");
     hexpand: true;
 
     [suffix]

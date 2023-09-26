@@ -1,6 +1,7 @@
 using Core;
 using UI.Components;
 using UI.Extensions;
+using static UI.Localization.CatalogManager;
 
 namespace UI.Windows.Main.Config;
 
@@ -21,8 +22,8 @@ public class ConfigView : Gtk.ListBox
         SetValign(Gtk.Align.Start);
         AddCssClass("boxed-list");
 
-        keySelectorRow = new KeySelectorRow("Toggle key");
-        switchRow = new SwitchRow("Enable on start");
+        keySelectorRow = new KeySelectorRow(GetString("Toggle key"), GetString("Press any key"));
+        switchRow = new SwitchRow(GetString("Enable on start"));
         casSettings = new CasSettings();
         dlsSettings = new DlsSettings();
         fxaaSettings = new FxaaSettings();

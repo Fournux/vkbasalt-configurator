@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 Adw.ExpanderRow fxaaSettings {
-  title: "FXAA (Fast Approximate Anti-Aliasing)";
+  title: _("FXAA (Fast Approximate Anti-Aliasing)");
 
   [action]
   Switch gtkSwitch {
@@ -10,7 +10,7 @@ Adw.ExpanderRow fxaaSettings {
   }
 
   Adw.ActionRow {
-    title: "Subpixel Quality";
+    title: _("Subpixel Quality");
     hexpand: true;
 
     [suffix]
@@ -26,7 +26,7 @@ Adw.ExpanderRow fxaaSettings {
   }
 
   Adw.ActionRow {
-    title: "Edge Threshold";
+    title: _("Edge Threshold");
     hexpand: true;
 
     [suffix]
@@ -42,7 +42,7 @@ Adw.ExpanderRow fxaaSettings {
   }
 
   Adw.ActionRow {
-    title: "Edge Threshold Min";
+    title: _("Edge Threshold Min");
     hexpand: true;
 
     [suffix]

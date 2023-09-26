@@ -1,3 +1,6 @@
+using UI.Helpers;
+using static UI.Localization.CatalogManager;
+
 namespace UI.Windows.Main.Config;
 
 public class CasSettings : Adw.ExpanderRow
@@ -27,7 +30,7 @@ public class CasSettings : Adw.ExpanderRow
         _ = gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
-    public CasSettings() : this(new Gtk.Builder("CasSettings.ui"), "casSettings")
+    public CasSettings() : this(GtkHelper.FromLocalizedTemplate("CasSettings.ui", GetString), "casSettings")
     {
 
     }

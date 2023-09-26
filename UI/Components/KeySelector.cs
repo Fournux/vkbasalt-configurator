@@ -10,7 +10,7 @@ public class KeySelector : Gtk.Button
     }
     private bool Listening { get; set; }
 
-    public KeySelector() : base()
+    public KeySelector(string pressKeyLabel) : base()
     {
         SetValign(Gtk.Align.Center);
 
@@ -33,7 +33,7 @@ public class KeySelector : Gtk.Button
 
         OnClicked += (_, args) =>
         {
-            SetLabel("Press any key");
+            SetLabel(pressKeyLabel);
             Listening = true;
         };
 

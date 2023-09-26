@@ -56,7 +56,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
     private async Task CreateConfigFile()
     {
-        Gio.File? file = await GtkHelper.SelectFolder(this, "Select a folder", GetString("Open"));
+        Gio.File? file = await GtkHelper.SelectFolder(this, GetString("Select a folder"), GetString("Open"));
         if (file is not null)
         {
             OpenConfigFile(file.GetPath()! + Path.DirectorySeparatorChar + "vkbasalt.conf");
@@ -65,7 +65,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
     private async Task SelectConfigFile()
     {
-        Gio.File? file = await GtkHelper.Select(this, "Select a config file", GetString("Open"), "*.conf");
+        Gio.File? file = await GtkHelper.Select(this, GetString("Select a config file"), GetString("Open"), "*.conf");
         if (file is not null)
         {
             OpenConfigFile(file.GetPath()!);
@@ -87,7 +87,7 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         configView!.UpdateConfigFile(configFile!);
         configFile!.Save();
-        ShowToast("Config file has been saved.");
+        ShowToast(GetString("Config file has been saved."));
     }
 
     public MainWindow(Adw.Application application) : this(GtkHelper.FromLocalizedTemplate("MainWindow.ui", GetString), "mainWindow")

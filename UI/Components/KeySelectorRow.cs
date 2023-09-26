@@ -10,10 +10,10 @@ public class KeySelectorRow : Adw.ActionRow
 
     private readonly KeySelector keySelector;
 
-    public KeySelectorRow(string title)
+    public KeySelectorRow(string title, string pressKeyLabel)
     {
         SetHexpand(true);
-        keySelector = new KeySelector();
+        keySelector = new KeySelector(pressKeyLabel);
         AddSuffix(keySelector);
         SetTitle(title);
     }

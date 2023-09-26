@@ -1,3 +1,6 @@
+using UI.Helpers;
+using static UI.Localization.CatalogManager;
+
 namespace UI.Windows.Main.Config;
 
 public class DlsSettings : Adw.ExpanderRow
@@ -34,7 +37,7 @@ public class DlsSettings : Adw.ExpanderRow
         _ = gtkSwitch!.BindProperty("active", this, "enable-expansion", GObject.BindingFlags.SyncCreate);
     }
 
-    public DlsSettings() : this(new Gtk.Builder("DlsSettings.ui"), "dlsSettings")
+    public DlsSettings() : this(GtkHelper.FromLocalizedTemplate("DlsSettings.ui", GetString), "dlsSettings")
     {
     }
 }
