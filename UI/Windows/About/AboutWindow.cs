@@ -1,17 +1,17 @@
+using System.Configuration;
+
 namespace UI.Windows.About;
 
 public static class AboutWindow
 {
     public static void Show(Gtk.Window parent)
     {
-        Values values = Values.Instance();
-
         Adw.AboutWindow dialog = Adw.AboutWindow.New();
         dialog.SetTransientFor(parent);
-        dialog.SetIconName(values.APP_ID);
+        dialog.SetIconName(ConfigurationManager.AppSettings["APP_ID"]);
         dialog.SetApplicationName("vkBasalt Configurator");
-        dialog.SetApplicationIcon(values.APP_ID!);
-        dialog.SetVersion(values.APP_VERSION!);
+        dialog.SetApplicationIcon(ConfigurationManager.AppSettings["APP_ID"]!);
+        dialog.SetVersion(ConfigurationManager.AppSettings["APP_VERSION"]!);
         dialog.SetDeveloperName("Fournux");
         dialog.SetLicenseType(Gtk.License.MitX11);
         dialog.SetCopyright("© Fournux " + DateTime.Now.Year);

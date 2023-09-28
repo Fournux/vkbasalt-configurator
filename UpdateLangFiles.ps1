@@ -1,7 +1,9 @@
-$PO_PATH = "Data/po"
-$APP_POT_PATH = $PO_PATH + "/application.pot"
-$BLUEPRINT_POT_PATH = $PO_PATH + "/blueprint.pot"
-$POT_PATH = $PO_PATH + "/strings.pot"
+$build = ([Xml](Get-Content ./build.xml)).root
+
+$PO_FOLDER = $build.PO_FOLDER
+$APP_POT_PATH = $build.APP_POT_PATH
+$BLUEPRINT_POT_PATH = $build.BLUEPRINT_POT_PATH
+$POT_PATH = $build.POT_PATH
 
 # Remove existing POT file
 if (Test-Path $POT_PATH) 
@@ -16,18 +18,18 @@ GetText.Extractor -t $APP_POT_PATH
 ./ExtractorStringsBlueprint.ps1
 
 # Merge the two POT files together
-xgettext $PO_PATH/*.pot -o $POT_PATH
+xgettext $PO_FOLDER/*.pot -o $POT_PATH
 
 # Update or create PO files for each lang specified in LINGUAS file
-foreach($lang in Get-Content $PO_PATH/LINGUAS) 
+foreach($lang in Get-Content $PO_FOLDER/LINGUAS) 
 {
-    if(Test-Path $PO_PATH/$lang.po -PathType leaf)
+    if(Test-Path $PO_FOLDER/$lang.po -PathType leaf)
     {
-        msgmerge --update $PO_PATH/$lang.po $POT_PATH
+        msgmerge --update $PO_FOLDER/$lang.po $POT_PATH
     }
     else 
     {
-        msginit --input=$POT_PATH --locale=$lang --output=$PO_PATH/$lang.po --no-translator
+        msginit --input=$POT_PATH --locale=$lang --output=$PO_FOLDER/$lang.po --no-translator
     }
 }
 

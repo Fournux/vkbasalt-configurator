@@ -1,10 +1,11 @@
+using System.Configuration;
 using System.Text.Json;
 
 namespace Core.ApplicationState;
 
 public static class StateManager
 {
-    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + Values.Instance().APP_ID + Path.DirectorySeparatorChar + "state.json";
+    private static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + Path.DirectorySeparatorChar + ConfigurationManager.AppSettings["APP_ID"] + Path.DirectorySeparatorChar + "state.json";
 
     private static State? instance;
 

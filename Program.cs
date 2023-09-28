@@ -1,15 +1,15 @@
 ﻿#pragma warning disable CA1852
 
-global using Constants;
+using System.Configuration;
 
-Adw.Application app = Adw.Application.New(Values.Instance().APP_ID, Gio.ApplicationFlags.DefaultFlags);
+Adw.Application app = Adw.Application.New(ConfigurationManager.AppSettings["APP_ID"], Gio.ApplicationFlags.DefaultFlags);
 
 app.OnActivate += (application, args) =>
 {
     Gtk.IconTheme.GetForDisplay(Gdk.Display.GetDefault()!).AddSearchPath("icons");
 
     UI.Windows.Main.MainWindow mainWindow = new((Adw.Application)application);
-    mainWindow.SetIconName(Values.Instance().APP_ID);
+    mainWindow.SetIconName(ConfigurationManager.AppSettings["APP_ID"]);
     mainWindow.Show();
 };
 

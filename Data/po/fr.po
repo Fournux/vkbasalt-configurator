@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 09:12+0200\n"
+"POT-Creation-Date: 2023-09-28 21:09+0200\n"
 "PO-Revision-Date: 2023-09-24 22:04+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,38 +21,30 @@ msgstr ""
 msgid "Select a config file"
 msgstr "Sélectionnez un fichier de configuration existant"
 
-#: ../../../UI/Windows/Main/Config/ConfigView.cs:26
-msgid "Enable on start"
-msgstr "Activer au démarrage"
+#: ../../../UI/Windows/Main/Config/ConfigView.cs:25
+msgid "Toggle key"
+msgstr "Touche d'activation"
 
 #: ../../../UI/Windows/Main/Config/ConfigView.cs:25
 msgid "Press any key"
 msgstr "Appuyez sur une touche"
 
 #: ../../../UI/Windows/Main/MainWindow.cs:59
+msgid "Select a folder"
+msgstr "Sélectionnez un dossier"
+
+#: ../../../UI/Windows/Main/MainWindow.cs:59
 #: ../../../UI/Windows/Main/MainWindow.cs:68 MainWindow.blp:18
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../../../UI/Windows/Main/MainWindow.cs:59
-msgid "Select a folder"
-msgstr "Sélectionnez un dossier"
+#: ../../../UI/Windows/Main/Config/ConfigView.cs:26
+msgid "Enable on start"
+msgstr "Activer au démarrage"
 
 #: ../../../UI/Windows/Main/MainWindow.cs:90
 msgid "Config file has been saved."
 msgstr "Le fichier de configuration a été sauvegardé."
-
-#: ../../../UI/Windows/Main/Config/ConfigView.cs:25
-msgid "Toggle key"
-msgstr "Touche d'activation"
-
-#: DlsSettings.blp:5
-msgid "DLS (Denoised Luma Sharpening)"
-msgstr "DLS (Netteté Luma débruitée)"
-
-#: SmaaSettings.blp:5
-msgid "SMAA (Enhanced Subpixel Morphological Antialiasing)"
-msgstr "SMAA (Anti-crénelage morphologique sous-pixel amélioré)"
 
 #: HomeView.blp:11
 msgid "Please select a config file in your system or create a new one."
@@ -60,33 +52,57 @@ msgstr ""
 "Veuillez sélectionner un fichier de configuration existant ou créez-en un "
 "nouveau."
 
-#: SmaaSettings.blp:63
-msgid "Maximum search diagonal steps"
-msgstr "Recherche maximale d'étape en diagonale"
-
 #: CasSettings.blp:13 DlsSettings.blp:13
 msgid "Sharpness"
 msgstr "Netteté"
 
-#: HomeView.blp:20
-msgid "Open an existing config file"
-msgstr "Ouvrir un fichier de config existant"
-
-#: MainWindow.blp:56
-msgid "Save"
-msgstr "Sauvegarder"
-
-#: DlsSettings.blp:28
-msgid "Denoise"
-msgstr "Débruitage"
+#: CasSettings.blp:5
+msgid "CAS (Contrast Adaptive Sharpening)"
+msgstr "CAS (Nettetée adaptée au contraste)"
 
 #: HomeView.blp:24
 msgid "Create a new config file"
 msgstr "Créer un nouveau fichier de config"
 
-#: CasSettings.blp:5
-msgid "CAS (Contrast Adaptive Sharpening)"
-msgstr "CAS (Nettetée adaptée au contraste)"
+#: DlsSettings.blp:5
+msgid "DLS (Denoised Luma Sharpening)"
+msgstr "DLS (Netteté Luma débruitée)"
+
+#: SmaaSettings.blp:78
+msgid "Corner rounding"
+msgstr "Arrondi des coins"
+
+#: SmaaSettings.blp:13
+msgid "Edge detection shader"
+msgstr "Shader de détection des bords"
+
+#: FxaaSettings.blp:13
+msgid "Subpixel Quality"
+msgstr "Qualité des sous-pixels"
+
+#: SmaaSettings.blp:5
+msgid "SMAA (Enhanced Subpixel Morphological Antialiasing)"
+msgstr "SMAA (Anti-crénelage morphologique sous-pixel amélioré)"
+
+#: MainWindow.blp:56
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: FxaaSettings.blp:5
+msgid "FXAA (Fast Approximate Anti-Aliasing)"
+msgstr "FXAA (Anti-crénelage approximatif rapide)"
+
+#: DlsSettings.blp:28
+msgid "Denoise"
+msgstr "Débruitage"
+
+#: SmaaSettings.blp:63
+msgid "Maximum search diagonal steps"
+msgstr "Recherche maximale d'étape en diagonale"
+
+#: HomeView.blp:20
+msgid "Open an existing config file"
+msgstr "Ouvrir un fichier de config existant"
 
 #: FxaaSettings.blp:29 SmaaSettings.blp:32
 msgid "Edge Threshold"
@@ -96,22 +112,6 @@ msgstr "Seuil de bordure"
 msgid "Maximum search steps"
 msgstr "Nombre maximal d'étapes de recherche"
 
-#: FxaaSettings.blp:5
-msgid "FXAA (Fast Approximate Anti-Aliasing)"
-msgstr "FXAA (Anti-crénelage approximatif rapide)"
-
-#: SmaaSettings.blp:13
-msgid "Edge detection shader"
-msgstr "Shader de détection des bords"
-
 #: FxaaSettings.blp:45
 msgid "Edge Threshold Min"
 msgstr "Seuil de bordure minimal"
-
-#: SmaaSettings.blp:78
-msgid "Corner rounding"
-msgstr "Arrondi des coins"
-
-#: FxaaSettings.blp:13
-msgid "Subpixel Quality"
-msgstr "Qualité des sous-pixels"

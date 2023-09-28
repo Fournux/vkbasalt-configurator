@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<BLUEPRINT_FOLDER>UI/Blueprint</BLUEPRINT_FOLDER>
+	<PO_FOLDER>Data/po</PO_FOLDER>
+	<POT_PATH>Data/po/strings.pot</POT_PATH>
+	<APP_POT_PATH>Data/po/application.pot</APP_POT_PATH>
+	<BLUEPRINT_POT_PATH>Data/po/blueprint.pot</BLUEPRINT_POT_PATH>
+</root>
