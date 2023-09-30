@@ -1,11 +1,11 @@
 $REGEX = '_\("(.*)"\)' # Regex to detect _("localized strings")
 
-$build = ([Xml](Get-Content ./build.xml)).root
-$appSettings = ([Xml](Get-Content ./App.config)).configuration.appSettings.add
+$build = Get-Content -Raw ./build.json | ConvertFrom-Json
+$config = Get-Content -Raw ./config.json | ConvertFrom-Json
 
 $BLUEPRINT_FOLDER = $build.BLUEPRINT_FOLDER
 $BLUEPRINT_POT_PATH = $build.BLUEPRINT_POT_PATH
-$APP_DISPLAY_NAME = ($appSettings | Where-Object {$_.key -eq 'APP_DISPLAY_NAME'}).value
+$APP_DISPLAY_NAME = $config.APP_DISPLAY_NAME
 
 $hashTable = @{}
 

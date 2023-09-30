@@ -1,4 +1,4 @@
-$build = ([Xml](Get-Content ./build.xml)).root
+$build = Get-Content -Raw ./build.json | ConvertFrom-Json
 
 $PO_FOLDER = $build.PO_FOLDER
 $APP_POT_PATH = $build.APP_POT_PATH

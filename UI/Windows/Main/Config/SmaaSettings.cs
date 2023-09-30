@@ -1,6 +1,6 @@
 using Core;
 using UI.Helpers;
-using static UI.Localization.CatalogManager;
+using static UI.Localization.I18n;
 
 namespace UI.Windows.Main.Config;
 

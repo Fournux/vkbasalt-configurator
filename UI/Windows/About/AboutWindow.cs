@@ -1,5 +1,3 @@
-using System.Configuration;
-
 namespace UI.Windows.About;
 
 public static class AboutWindow
@@ -8,10 +6,10 @@ public static class AboutWindow
     {
         Adw.AboutWindow dialog = Adw.AboutWindow.New();
         dialog.SetTransientFor(parent);
-        dialog.SetIconName(ConfigurationManager.AppSettings["APP_ID"]);
+        dialog.SetIconName(Configuration.Get("APP_ID"));
         dialog.SetApplicationName("vkBasalt Configurator");
-        dialog.SetApplicationIcon(ConfigurationManager.AppSettings["APP_ID"]!);
-        dialog.SetVersion(ConfigurationManager.AppSettings["APP_VERSION"]!);
+        dialog.SetApplicationIcon(Configuration.Get("APP_ID"));
+        dialog.SetVersion(Configuration.Get("APP_VERSION"));
         dialog.SetDeveloperName("Fournux");
         dialog.SetLicenseType(Gtk.License.MitX11);
         dialog.SetCopyright("© Fournux " + DateTime.Now.Year);

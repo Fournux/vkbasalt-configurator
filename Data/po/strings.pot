@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 21:09+0200\n"
+"POT-Creation-Date: 2023-09-29 21:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../../UI/Windows/Main/MainWindow.cs:68
-msgid "Select a config file"
+#: ../../../UI/Windows/Main/MainWindow.cs:90
+msgid "Config file has been saved."
+msgstr ""
+
+#: ../../../UI/Windows/Main/Config/ConfigView.cs:26
+msgid "Enable on start"
 msgstr ""
 
 #: ../../../UI/Windows/Main/Config/ConfigView.cs:25
 msgid "Toggle key"
+msgstr ""
+
+#: ../../../UI/Windows/Main/MainWindow.cs:68
+msgid "Select a config file"
+msgstr ""
+
+#: ../../../UI/Windows/Main/MainWindow.cs:59
+msgid "Select a folder"
 msgstr ""
 
 #: ../../../UI/Windows/Main/Config/ConfigView.cs:25
@@ -30,68 +42,48 @@ msgid "Press any key"
 msgstr ""
 
 #: ../../../UI/Windows/Main/MainWindow.cs:59
-msgid "Select a folder"
-msgstr ""
-
-#: ../../../UI/Windows/Main/MainWindow.cs:59
 #: ../../../UI/Windows/Main/MainWindow.cs:68 MainWindow.blp:18
 msgid "Open"
-msgstr ""
-
-#: ../../../UI/Windows/Main/Config/ConfigView.cs:26
-msgid "Enable on start"
-msgstr ""
-
-#: ../../../UI/Windows/Main/MainWindow.cs:90
-msgid "Config file has been saved."
-msgstr ""
-
-#: HomeView.blp:11
-msgid "Please select a config file in your system or create a new one."
-msgstr ""
-
-#: CasSettings.blp:13 DlsSettings.blp:13
-msgid "Sharpness"
 msgstr ""
 
 #: CasSettings.blp:5
 msgid "CAS (Contrast Adaptive Sharpening)"
 msgstr ""
 
-#: HomeView.blp:24
-msgid "Create a new config file"
-msgstr ""
-
-#: DlsSettings.blp:5
-msgid "DLS (Denoised Luma Sharpening)"
-msgstr ""
-
-#: SmaaSettings.blp:78
-msgid "Corner rounding"
-msgstr ""
-
 #: SmaaSettings.blp:13
 msgid "Edge detection shader"
 msgstr ""
 
-#: FxaaSettings.blp:13
-msgid "Subpixel Quality"
-msgstr ""
-
-#: SmaaSettings.blp:5
-msgid "SMAA (Enhanced Subpixel Morphological Antialiasing)"
+#: FxaaSettings.blp:29 SmaaSettings.blp:32
+msgid "Edge Threshold"
 msgstr ""
 
 #: MainWindow.blp:56
 msgid "Save"
 msgstr ""
 
+#: SmaaSettings.blp:48
+msgid "Maximum search steps"
+msgstr ""
+
 #: FxaaSettings.blp:5
 msgid "FXAA (Fast Approximate Anti-Aliasing)"
 msgstr ""
 
+#: DlsSettings.blp:5
+msgid "DLS (Denoised Luma Sharpening)"
+msgstr ""
+
+#: CasSettings.blp:13 DlsSettings.blp:13
+msgid "Sharpness"
+msgstr ""
+
 #: DlsSettings.blp:28
 msgid "Denoise"
+msgstr ""
+
+#: SmaaSettings.blp:5
+msgid "SMAA (Enhanced Subpixel Morphological Antialiasing)"
 msgstr ""
 
 #: SmaaSettings.blp:63
@@ -102,14 +94,22 @@ msgstr ""
 msgid "Open an existing config file"
 msgstr ""
 
-#: FxaaSettings.blp:29 SmaaSettings.blp:32
-msgid "Edge Threshold"
-msgstr ""
-
-#: SmaaSettings.blp:48
-msgid "Maximum search steps"
-msgstr ""
-
 #: FxaaSettings.blp:45
 msgid "Edge Threshold Min"
+msgstr ""
+
+#: HomeView.blp:11
+msgid "Please select a config file in your system or create a new one."
+msgstr ""
+
+#: FxaaSettings.blp:13
+msgid "Subpixel Quality"
+msgstr ""
+
+#: SmaaSettings.blp:78
+msgid "Corner rounding"
+msgstr ""
+
+#: HomeView.blp:24
+msgid "Create a new config file"
 msgstr ""

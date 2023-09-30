@@ -2,7 +2,7 @@ using GetText;
 
 namespace UI.Localization;
 
-public static class CatalogManager
+public static class I18n
 {
     private static readonly ICatalog _catalog = new Catalog("strings", "./locales");
 

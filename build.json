@@ -1,0 +1,7 @@
+{
+  "BLUEPRINT_FOLDER": "UI/Blueprint",
+  "PO_FOLDER": "Data/po",
+  "POT_PATH": "Data/po/strings.pot",
+  "APP_POT_PATH": "Data/po/application.pot",
+  "BLUEPRINT_POT_PATH": "Data/po/blueprint.pot"
+}

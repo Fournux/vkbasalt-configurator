@@ -4,7 +4,7 @@ using UI.Helpers;
 using UI.Windows.About;
 using UI.Windows.Main.Config;
 using UI.Windows.Main.Home;
-using static UI.Localization.CatalogManager;
+using static UI.Localization.I18n;
 
 namespace UI.Windows.Main;
 

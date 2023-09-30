@@ -10,7 +10,6 @@
     <RunWorkingDirectory>bin/Debug/net7.0/linux-x64</RunWorkingDirectory> 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AppConfig>App.config</AppConfig>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,14 +17,14 @@
     <PackageReference Include="GirCore.Adw-1" Version="0.5.0-preview.1" />
     <PackageReference Include="GirCore.Gdk-4.0" Version="0.5.0-preview.1" />
     <PackageReference Include="GirCore.Gio-2.0" Version="0.5.0-preview.1" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <PackageReference Include="JsonPeek" Version="1.2.0" />
   </ItemGroup>
 
 
   <Target Name="PoBuild" BeforeTargets="PrepareForBuild;Restore">
-    <XmlPeek XmlInputPath="build.xml" Query="root/PO_FOLDER/text()">
-      <Output TaskParameter="Result" ItemName="PO_FOLDER" />
-    </XmlPeek>
+    <JsonPeek ContentPath="build.json" Query="$.PO_FOLDER">
+      <Output TaskParameter="Result" PropertyName="PO_FOLDER" />
+    </JsonPeek>
     <ItemGroup>
       <Linguas Include="$(MSBuildProjectDirectory)/Data/po/LINGUAS" />
     </ItemGroup>
@@ -34,7 +33,7 @@
     </ReadLinesFromFile>
     <MakeDir Directories="$(OutDir)/locales" />
     <MakeDir Directories="$(OutDir)/locales/%(LangList.Identity)" />
-    <Exec Command="msgfmt $(MSBuildProjectDirectory)/@(PO_FOLDER)/%(LangList.Identity).po -o $(OutDir)/locales/%(LangList.Identity)/strings.mo" />
+    <Exec Command="msgfmt $(MSBuildProjectDirectory)/$(PO_FOLDER)/%(LangList.Identity).po -o $(OutDir)/locales/%(LangList.Identity)/strings.mo" />
   </Target>
 
   <Target Name="CopyMoFilesToPublishFolder" AfterTargets="PoBuild" Condition="'$(Configuration)'=='RELEASE'">
@@ -45,10 +44,10 @@
   </Target>
 
   <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
-    <XmlPeek XmlInputPath="build.xml" Query="root/BLUEPRINT_FOLDER/text()">
-      <Output TaskParameter="Result" ItemName="BLUEPRINT_FOLDER" />
-    </XmlPeek>
-    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/generated/ $(MSBuildProjectDirectory)/@(BLUEPRINT_FOLDER) $(MSBuildProjectDirectory)/@(BLUEPRINT_FOLDER)/*/*.blp $(MSBuildProjectDirectory)/@(BLUEPRINT_FOLDER)/*/*/*.blp" />
+    <JsonPeek ContentPath="build.json" Query="$.BLUEPRINT_FOLDER">
+      <Output TaskParameter="Result" PropertyName="BLUEPRINT_FOLDER" />
+    </JsonPeek>
+    <Exec Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/generated/ $(MSBuildProjectDirectory)/$(BLUEPRINT_FOLDER) $(MSBuildProjectDirectory)/$(BLUEPRINT_FOLDER)/*/*.blp $(MSBuildProjectDirectory)/$(BLUEPRINT_FOLDER)/*/*/*.blp" />
   </Target>
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">
@@ -69,6 +68,13 @@
   <ItemGroup>
     <Content Include="$(MSBuildProjectDirectory)/Data/icons/hicolor/*/*/*">
       <Link>icons/hicolor/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildProjectDirectory)/config.json">
+      <Link>%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
