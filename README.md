@@ -2,6 +2,12 @@
   <img src="./Data/icons/hicolor/scalable/apps/lu.fournux.vkbasalt.configurator.svg">
   <h1>VkBasalt Configurator</h1>
   <p>A user interface to easily edit <a href="https://github.com/DadSchoorse/vkBasalt">vkBasalt</a> configuration files </p>
+  <div>
+    <img src="https://img.shields.io/github/license/fournux/vkbasalt-configurator">
+    <img src="https://img.shields.io/badge/.NET-7.0-blue">
+    <img src="https://img.shields.io/badge/GTK-4.0-darkgreen">
+    <img src="https://img.shields.io/badge/libadwaita-1.0-darkgreen">
+  </div>
 </div>
 
 <div align="center">
