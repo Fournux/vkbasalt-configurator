@@ -4,7 +4,7 @@
   <p>A user interface to easily edit <a href="https://github.com/DadSchoorse/vkBasalt">vkBasalt</a> configuration files </p>
   <div>
     <img src="https://img.shields.io/github/license/fournux/vkbasalt-configurator">
-    <img src="https://img.shields.io/badge/.NET-7.0-blue">
+    <img src="https://img.shields.io/badge/.NET-8.0-blue">
     <img src="https://img.shields.io/badge/GTK-4.0-darkgreen">
     <img src="https://img.shields.io/badge/libadwaita-1.0-darkgreen">
   </div>
@@ -20,12 +20,33 @@ TODO
 
 ## Building
 
-To run this project, run the following commands:
+### Dependencies
+
+You need to have **blueprint-compiler** installed on your system.
+
+Fedora
+
+```
+sudo dnf install blueprint-compiler
+```
+
+Ubuntu & Debian
+
+```
+sudo apt install blueprint-compiler
+```
+
+Restore the project
+
+```bash
+dotnet restore
+```
+
+To run this project, run the following command:
 
 ```bash
 dotnet run
 ```
-
 
 ## Technologies used
 

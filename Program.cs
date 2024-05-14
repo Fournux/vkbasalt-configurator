@@ -12,4 +12,4 @@ app.OnActivate += (application, args) =>
 };
 
 // Run the application
-return app.Run();
+return app.Run(0, null);
