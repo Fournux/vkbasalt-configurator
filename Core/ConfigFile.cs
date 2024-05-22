@@ -5,12 +5,12 @@ namespace Core;
 public class ConfigFile
 {
     public string Path { get; set; }
-    private readonly IDictionary<ConfigKey, string> raw;
+    private readonly Dictionary<ConfigKey, string> raw;
 
     public ConfigFile(string path)
     {
         Path = path;
-        raw = new Dictionary<ConfigKey, string>();
+        raw = [];
         if (File.Exists(Path))
         {
             foreach (string line in File.ReadLines(Path))

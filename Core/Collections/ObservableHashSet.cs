@@ -105,7 +105,7 @@ public class ObservableHashSet<T>
 
         OnCountPropertyChanging();
 
-        List<T> removed = this.ToList();
+        List<T> removed = [.. this];
 
         _set.Clear();
 

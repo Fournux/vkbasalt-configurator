@@ -98,7 +98,7 @@ public class ConfigView : Gtk.ListBox
         configFile.Set(ConfigKey.SmaaMaxSearchStepsDiag, smaaSettings.DiagSteps);
         configFile.Set(ConfigKey.SmaaCornerRounding, smaaSettings.Corner);
 
-        List<string> effects = new();
+        List<string> effects = [];
         if (casSettings.Enabled)
         {
             effects.Add("cas");

@@ -16,7 +16,7 @@ public static class AboutWindow
         dialog.SetWebsite("https://fournux.lu/");
         dialog.SetIssueUrl("https://github.com/Fournux/vkbasalt-configurator/issues");
         dialog.AddLink("GitHub Repo", "https://github.com/Fournux/vkbasalt-configurator");
-        dialog.SetDevelopers(new string[] { "Fournux" });
+        dialog.SetDevelopers(["Fournux"]);
         dialog.Present();
     }
 }

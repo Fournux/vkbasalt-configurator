@@ -5,7 +5,7 @@ namespace Core.ApplicationState;
 
 public class State
 {
-    public ObservableHashSet<string> RecentFiles { get; set; } = new();
+    public ObservableHashSet<string> RecentFiles { get; set; } = [];
 
 }
 

@@ -4,7 +4,7 @@ namespace UI.Localization;
 
 public static class I18n
 {
-    private static readonly ICatalog _catalog = new Catalog("strings", "./locales");
+    private static readonly Catalog _catalog = new("strings", "./locales");
 
     public static string GetString(string key)
     {
