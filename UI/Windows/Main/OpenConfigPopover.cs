@@ -15,6 +15,8 @@ public class OpenConfigPopover : Gtk.Popover
     private readonly FileList fileList;
 
     public event FileHandler? OnFileSelected;
+    public event FileHandler? OnFileDelete;
+
 
     private OpenConfigPopover(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
@@ -31,7 +33,11 @@ public class OpenConfigPopover : Gtk.Popover
             noRecentFilesIndicator!.SetVisible(files.Count == 0);
         };
         fileList.OnFileSelected += (file) => OnFileSelected?.Invoke(file);
-        fileList.OnFileDelete += (file) => files.Remove(file);
+        fileList.OnFileDelete += (file) =>
+        {
+            _ = files.Remove(file);
+            OnFileDelete?.Invoke(file);
+        };
         noRecentFilesIndicator!.SetVisible(files.Count == 0);
         content!.Append(fileList);
     }

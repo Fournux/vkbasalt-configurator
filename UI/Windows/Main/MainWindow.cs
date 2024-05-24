@@ -16,6 +16,7 @@ public class MainWindow : Gtk.ApplicationWindow
     [Gtk.Connect] private readonly Gtk.Box? topActions;
     [Gtk.Connect] private readonly Gtk.Button? addButton;
     [Gtk.Connect] private readonly Gtk.Button? saveButton;
+    [Gtk.Connect] private readonly Gtk.Button? backButton;
     [Gtk.Connect] private readonly Gtk.Button? aboutButton;
     [Gtk.Connect] private readonly Adw.ToastOverlay? toastOverlay;
 #pragma warning restore 0649
@@ -25,9 +26,13 @@ public class MainWindow : Gtk.ApplicationWindow
     private readonly OpenConfigPopover openConfigPopover;
     private ConfigFile? configFile;
 
+    private const string WINDOW_TITLE = "vkBasalt configurator";
+
     private MainWindow(Gtk.Builder builder, string name) : base(builder.GetPointer(name), false)
     {
         builder.Connect(this);
+
+        SetTitle(WINDOW_TITLE);
 
         configView = new ConfigView();
         homeView = new HomeView(this);
@@ -39,6 +44,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
         addButton!.OnClicked += async (_, _) => await CreateConfigFile();
         saveButton!.OnClicked += (_, _) => SaveConfigFile();
+        backButton!.OnClicked += (_, _) => BackToHomeView();
 
         OnCloseRequest += (_, _) =>
         {
@@ -48,6 +54,7 @@ public class MainWindow : Gtk.ApplicationWindow
 
         openConfigPopover = new OpenConfigPopover();
         openConfigPopover.OnFileSelected += file => { OpenConfigFile(file); openConfigPopover.Hide(); };
+        openConfigPopover.OnFileDelete += file => { if (file == configFile?.Path) { BackToHomeView(); } };
         openMenuButton!.OnClicked += async (sender, args) => await SelectConfigFile();
         openMenuButton!.SetPopover(openConfigPopover);
 
@@ -81,6 +88,18 @@ public class MainWindow : Gtk.ApplicationWindow
         main!.SetChild(configView);
         topActions!.SetVisible(true);
         saveButton!.SetVisible(true);
+        backButton!.SetVisible(true);
+
+    }
+
+    private void BackToHomeView()
+    {
+        configFile = null;
+        SetTitle(WINDOW_TITLE);
+        main!.SetChild(homeView);
+        topActions!.SetVisible(false);
+        saveButton!.SetVisible(false);
+        backButton!.SetVisible(false);
     }
 
     private void SaveConfigFile()

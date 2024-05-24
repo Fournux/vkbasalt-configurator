@@ -2,13 +2,13 @@ using Gtk 4.0;
 using Adw 1;
 
 Gtk.ApplicationWindow mainWindow {
-  default-width: 700;
-  default-height: 800;
+  default-width: 900;
+  default-height: 700;
   styles ["devel"]
 
   [titlebar]
   Adw.HeaderBar {
-    styles ["toolbar", "flat"]
+    styles ["flat"]
     
     [start]
       Box topActions {
@@ -45,6 +45,13 @@ Gtk.ApplicationWindow mainWindow {
     Box {
       margin-top:10;
       styles ["view"]
+      Button backButton {
+        margin-start: 10;
+        margin-bottom: 10;
+        margin-top: 10;
+        visible: false;
+        label: _("Back");
+      }
       Box {
         hexpand: true;
       }
