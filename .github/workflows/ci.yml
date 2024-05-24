@@ -32,6 +32,12 @@ jobs:
     # Each job run contains these five steps
     steps:
 
+    - name: Install gettext
+      run: sudo apt install -y gettext
+
+    - name: Install gettext
+      run: sudo apt install -y blueprint-compiler
+
     # 1) Check out the source code so that the workflow can access it.
     - uses: actions/checkout@v2
 
