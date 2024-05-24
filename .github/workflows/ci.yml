@@ -38,8 +38,8 @@ jobs:
     - name: Install blueprint-compiler
       run: sudo apt install -y blueprint-compiler
 
-    - name: Install GTK4 dev libs
-      run: sudo apt install libgtk-4-dev
+    - name: Install GTK4 avec libadwaita dev libs
+      run: sudo apt install libgtk-4-dev libadwaita-1-dev
 
     # 1) Check out the source code so that the workflow can access it.
     - uses: actions/checkout@v2
