@@ -35,7 +35,7 @@ jobs:
     - name: Install gettext
       run: sudo apt install -y gettext
 
-    - name: Install gettext
+    - name: Install blueprint-compiler
       run: sudo apt install -y blueprint-compiler
 
     # 1) Check out the source code so that the workflow can access it.
