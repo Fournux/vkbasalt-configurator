@@ -36,12 +36,6 @@ Ubuntu & Debian
 sudo apt install blueprint-compiler
 ```
 
-Restore the project
-
-```bash
-dotnet restore
-```
-
 To run this project, run the following command:
 
 ```bash

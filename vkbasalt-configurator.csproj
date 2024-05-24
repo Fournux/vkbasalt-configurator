@@ -19,9 +19,8 @@
     <PackageReference Include="GirCore.Gio-2.0" Version="0.5.0" />
     <PackageReference Include="JsonPeek" Version="1.2.0" />
   </ItemGroup>
-
-
-  <Target Name="PoBuild" BeforeTargets="PrepareForBuild;Restore">
+  
+  <Target Name="PoBuild" BeforeTargets="PrepareForBuild">
     <JsonPeek ContentPath="build.json" Query="$.PO_FOLDER">
       <Output TaskParameter="Result" PropertyName="PO_FOLDER" />
     </JsonPeek>
@@ -43,7 +42,7 @@
     <Copy SourceFiles="@(MoFiles)" DestinationFolder="$(PublishDir)/locales/%(RecursiveDir)" />
   </Target>
 
-  <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
+  <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild">
     <JsonPeek ContentPath="build.json" Query="$.BLUEPRINT_FOLDER">
       <Output TaskParameter="Result" PropertyName="BLUEPRINT_FOLDER" />
     </JsonPeek>
