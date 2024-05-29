@@ -22,18 +22,20 @@ TODO
 
 ### Dependencies
 
-You need to have **blueprint-compiler** installed on your system.
-
 Fedora
 
 ```
-sudo dnf install blueprint-compiler
+sudo dnf install blueprint-compiler gettext gtk4-devel libadwaita-devel
 ```
 
 Ubuntu & Debian
 
 ```
-sudo apt install blueprint-compiler
+sudo apt install blueprint-compiler gettext libgtk-4-dev libadwaita-1-dev
+```
+
+```
+dotnet tool install --global GetText.NET.Extractor
 ```
 
 To run this project, run the following command:
